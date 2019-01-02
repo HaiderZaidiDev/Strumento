@@ -1,7 +1,7 @@
 import discord # Imports discord module. 
 import urllib.request # Imports urllib.request module
 import os # Imports os module. 
-import json
+import json # Imports Json Module
 
 client = discord.Client() # Creates discord client. 
 
@@ -48,38 +48,31 @@ async def on_message(message): # Defines event response. (Executes on message.)
             skin_name = jsonToPython['iteminfo']['item_name'] # Skin Name.
 
             skin = '**Skin: **' + weapon_type + ' | ' + skin_name # Weapon + Skin Name
-            raw_skin = weapon_type + ' %7C ' + skin_name
+            raw_skin = weapon_type + ' %7C ' + skin_name # Skin string with percent encoding. 
             statSkin = '**Skin: **StatTrak™ ' + weapon_type + ' | ' + skin_name # Weapon + Skin Name
-            statSkin_raw = 'StatTrak%E2%84%A2 ' + weapon_type + ' %7C ' + skin_name
+            statSkin_raw = 'StatTrak%E2%84%A2 ' + weapon_type + ' %7C ' + skin_name # Stat trak skin string with percent encoding. 
 
-            if jsonToPython['iteminfo']['defindex'] in knifeID:
-              print('is knife')
+            if jsonToPython['iteminfo']['defindex'] in knifeID: # If the skin is a knife, the followeing code is executed.
               skin = '**Skin: **★ ' + weapon_type + ' | ' + skin_name # Weapon + Skin Name
-              raw_skin = '%E2%98%85 ' + weapon_type + ' %7C ' + skin_name
+              raw_skin = '%E2%98%85 ' + weapon_type + ' %7C ' + skin_name # Skin string with percent encoding. 
               statSkin = '**Skin: **★ StatTrak™ ' + weapon_type + ' | ' + skin_name # Weapon + Skin Name
-              statSkin_raw = '%E2%98%85 StatTrak%E2%84%A2 ' + weapon_type + ' %7C ' + skin_name
+              statSkin_raw = '%E2%98%85 StatTrak%E2%84%A2 ' + weapon_type + ' %7C ' + skin_name # Stat trak skin string with percent encoding
 
-            #gold = 'gold'
-            #test = jsonToPython['iteminfo']['stickers'][0]
 
-            print(len(jsonToPython['iteminfo']['stickers']))
-
-            # Checks if the skin is souvenier (if the first sticker has the word gold in it)
-            if len(jsonToPython['iteminfo']['stickers']) > 0:
-              if jsonToPython['iteminfo']['origin'] == 8 and str('gold') in jsonToPython['iteminfo']['stickers'][0]['codename'] :
-                skin = '**Skin: ** Souvenir ' + weapon_type + ' | ' + skin_name
-                raw_skin = 'Souvenir ' + weapon_type + ' %7C ' + skin_name
-                
-            else: 
-              print('no')
-
-            statByte = statSkin_raw.encode('utf-8')
+            if len(jsonToPython['iteminfo']['stickers']) > 0: # If the skin has a sticker, the following code is executed.
+              #--- Souvenier Detection
+              if jsonToPython['iteminfo']['origin'] == 8 and str('gold') in jsonToPython['iteminfo']['stickers'][0]['codename']: # If the skin was unboxed, and has a sticker with the word gold in it the following code is executed.
+                skin = '**Skin: ** Souvenir ' + weapon_type + ' | ' + skin_name # Adds souvenier suffix to skin.
+                raw_skin = 'Souvenir ' + weapon_type + ' %7C ' + skin_name # Adds souvenier suffix to skin name with percent encoding.
+            
+            
             StrFloatValue = str(jsonToPython['iteminfo']['floatvalue']) # Float value as string. 
-            skin_floatValue = '**Float: **'  + StrFloatValue # Float value with suffix. 
+            skin_floatValue = '**Float: **'  + StrFloatValue # Float value with suffix, used in embed. 
+            
+            #--- Wear detection
+            #- Determines wear of the skin based upon the float value. 
 
             raw_floatValue = jsonToPython['iteminfo']['floatvalue'] # Float value as float. 
-
-          #-- Determines wear of the skin based upon the float value. 
 
             if raw_floatValue < 0.07: # If the flow is below 0.07 the follopw
               wear = 'Factory New'
@@ -97,185 +90,183 @@ async def on_message(message): # Defines event response. (Executes on message.)
               wear = 'Battle-Scarred'
             
 
-            marketWear = ' %28' + wear + '%29'
-            wearHash = '(' + wear + ')'
-            suffixWear = '**Wear: **' + wear
-            marketHash = weapon_type + ' | ' + skin_name + ' ' + wearHash
-            print(marketHash)
+            
+            marketWear = ' %28' + wear + '%29' # Adds brackets via percent encoding around the wear of the skin.
+            wearHash = '(' + wear + ')' # Adds brackets around the wear of the skin.
+            suffixWear = '**Wear: **' + wear # Wear output to be displayed in the embed (wear with suffix).
+
 
 
             #------- STICKER DETECTION
-            if len(jsonToPython['iteminfo']['stickers']) == 4:
+            if len(jsonToPython['iteminfo']['stickers']) == 4: # If there are 4 stickers, the following code is executed.
               wearOne = jsonToPython['iteminfo']['stickers'][0]['wear']
               wearTwo = jsonToPython['iteminfo']['stickers'][1]['wear']
               wearThree = jsonToPython['iteminfo']['stickers'][2]['wear']
               wearFour = jsonToPython['iteminfo']['stickers'][3]['wear']
             
-            if len(jsonToPython['iteminfo']['stickers']) == 3:
+            if len(jsonToPython['iteminfo']['stickers']) == 3: # If there are 3 stickers the following code is executed.
               wearOne = jsonToPython['iteminfo']['stickers'][0]['wear']
               wearTwo = jsonToPython['iteminfo']['stickers'][1]['wear']
               wearThree = jsonToPython['iteminfo']['stickers'][2]['wear']
 
-            if len(jsonToPython['iteminfo']['stickers']) == 2:
+            if len(jsonToPython['iteminfo']['stickers']) == 2: # If there are 2 stickers the following code is executed.
               wearOne = jsonToPython['iteminfo']['stickers'][0]['wear']
               wearTwo = jsonToPython['iteminfo']['stickers'][1]['wear']
 
-            if len(jsonToPython['iteminfo']['stickers']) == 1:
+            if len(jsonToPython['iteminfo']['stickers']) == 1: # If there is 1 sticker the following code is executed.
               wearOne = jsonToPython['iteminfo']['stickers'][0]['wear']
 
-            if len(jsonToPython['iteminfo']['stickers']) == 0:
+              
+              
+            if len(jsonToPython['iteminfo']['stickers']) == 0: # If there are no stickers the following code is executed.
               stickerOutput =  ''
+            #--- Sticker wear values. 
+            else: # If there are stickers on the skin, the following code is executed.
+              if len(jsonToPython['iteminfo']['stickers']) == 4: # If there are 4 stickers the following code is executed.
+                
+                if wearOne == None: # The code below is executed if the sticker wear is null.
+                  wearOne = 0 # Assigns 0 as the wear value of the sticker.
+                else: # If the sticker wear is not null the following code is executed.
+                  wearOne = wearOne*100 # Multiplies the wear of the sticker by 100 (to become a percent).
 
-            
-            else:
-              if len(jsonToPython['iteminfo']['stickers']) == 4:
-                if wearOne == None:
-                  wearOne = 0
-                else:
-                  wearOne = wearOne*100
+                if wearTwo == None: # The code below is executed if the sticker wear is null.
+                  wearTwo = 0 # Assigns 0 as the wear value of the sticker.
+                else: # If the sticker wear is not null the following code is executed.
+                  wearTwo = wearTwo*100 # Multiplies the wear of the sticker by 100 (to become a percent).
 
-                if wearTwo == None:
-                  wearTwo = 0
-                else:
-                  wearTwo = wearTwo*100
+                if wearThree == None: # The code below is executed if the sticker wear is null.
+                  wearThree = 0 # Assigns 0 as the wear value of the sticker.
+                else: # If the sticker wear is not null the following code is executed.
+                  wearThree = wearThree*100# Multiplies the wear of the sticker by 100 (to become a percent).
 
-                if wearThree == None:
-                  wearThree = 0
-                else:
-                  wearThree = wearThree*100
-
-                if wearFour == None:
-                  wearFour = 0
-                else:
-                  wearFour = wearFour*100
+                if wearFour == None: # The code below is executed if the sticker wear is null.
+                  wearFour = 0 # Assigns 0 as the wear value of the sticker.
+                else: # If the sticker wear is not null the following code is executed.
+                  wearFour = wearFour*100 # Multiplies the wear of the sticker by 100 (to become a percent).
               
-              if len(jsonToPython['iteminfo']['stickers']) == 3:
-                if wearOne == None:
-                  wearOne = 0
-                else:
-                  wearOne = wearOne*100
+              if len(jsonToPython['iteminfo']['stickers']) == 3: # If there are 3 stickers the following code is executed.
+                
+                if wearOne == None: # The code below is executed if the sticker wear is null.
+                  wearOne = 0 # Assigns 0 as the wear value of the sticker.
+                else: # If the sticker wear is not null the following code is executed.
+                  wearOne = wearOne*100 # Multiplies the wear of the sticker by 100 (to become a percent).
 
-                if wearTwo == None:
-                  wearTwo = 0
-                else:
-                  wearTwo = wearTwo*100
+                if wearTwo == None: # The code below is executed if the sticker wear is null.
+                  wearTwo = 0 # Assigns 0 as the wear value of the sticker.
+                else: # If the sticker wear is not null the following code is executed.
+                  wearTwo = wearTwo*100 # Multiplies the wear of the sticker by 100 (to become a percent).
 
-                if wearThree == None:
-                  wearThree = 0
-                else:
-                  wearThree = wearThree*100
+                if wearThree == None: # The code below is executed if the sticker wear is null.
+                  wearThree = 0  # Assigns 0 as the wear value of the sticker.
+                else: # If the sticker wear is not null the following code is executed.
+                  wearThree = wearThree*100 # Multiplies the wear of the sticker by 100 (to become a percent).
 
-              if len(jsonToPython['iteminfo']['stickers']) == 2:
-                if wearOne == None:
-                  wearOne = 0
-                else:
-                  wearOne = wearOne*100
+              if len(jsonToPython['iteminfo']['stickers']) == 2: # If there are 2 stickers the following code is executed.
+                
+                if wearOne == None: # The code below is executed if the sticker wear is null.
+                  wearOne = 0 # Assigns 0 as the wear value of the sticker.
+                else: # If the sticker wear is not null the following code is executed.
+                  wearOne = wearOne*100 # Multiplies the wear of the sticker by 100 (to become a percent).
 
-                if wearTwo == None:
-                  wearTwo = 0
-                else:
-                  wearTwo = wearTwo*100
+                if wearTwo == None: # The code below is executed if the sticker wear is null.
+                  wearTwo = 0 # Assigns 0 as the wear value of the sticker.
+                else: # If the sticker wear is not null the following code is executed.
+                  wearTwo = wearTwo*100 # Multiplies the wear of the sticker by 100 (to become a percent).
 
-              if len(jsonToPython['iteminfo']['stickers']) == 1:
-                if wearOne == None:
-                  wearOne = 0
-                else:
-                  wearOne = wearOne*100
+              if len(jsonToPython['iteminfo']['stickers']) == 1: # If there is one sticker the following code is executed.
+                
+                if wearOne == None: # The code below is executed if the sticker wear is null.
+                  wearOne = 0 # Assigns 0 as the wear value of the sticker.
+                else: # If the sticker wear is not null the following code is executed.
+                  wearOne = wearOne*100 # Multiplies the wear of the sticker by 100 (to become a percent).
 
-              
-              if len(jsonToPython['iteminfo']['stickers']) == 4:
+              #--- Sticker output in embed.
+              if len(jsonToPython['iteminfo']['stickers']) == 4: # If there are 4 stickers, the following code is executed.
+                #- Stickers available with wear perecents as suffix. 
                 stickerOne = '(' + str(wearOne)[0:2] +'%) ' + jsonToPython['iteminfo']['stickers'][0]['name']
                 stickerTwo = '(' + str(wearTwo)[0:2] +'%) ' + jsonToPython['iteminfo']['stickers'][1]['name']
                 stickerThree = '(' + str(wearThree)[0:2] +'%) ' + jsonToPython['iteminfo']['stickers'][2]['name']
                 stickerFour = '(' + str(wearFour)[0:2] +'%) ' + jsonToPython['iteminfo']['stickers'][3]['name']
-                stickerOutput = '\n \n __**Stickers:**__ ' + '\n' +  stickerOne + '\n' + stickerTwo + '\n' + stickerThree + '\n' + stickerFour
+                stickerOutput = '\n \n __**Stickers:**__ ' + '\n' +  stickerOne + '\n' + stickerTwo + '\n' + stickerThree + '\n' + stickerFour # Sticker output to be used in embed.
 
-              if len(jsonToPython['iteminfo']['stickers']) == 3:
+              if len(jsonToPython['iteminfo']['stickers']) == 3: # If there are 3 stickers, the following code is executed.
+                #- Stickers available with wear perecents as suffix. 
                 stickerOne = '(' + str(wearOne)[0:2] +'%) ' + jsonToPython['iteminfo']['stickers'][0]['name']
                 stickerTwo = '(' + str(wearTwo)[0:2] +'%) ' + jsonToPython['iteminfo']['stickers'][1]['name']
                 stickerThree = '(' + str(wearThree)[0:2] +'%) ' + jsonToPython['iteminfo']['stickers'][2]['name']
-                stickerOutput = '\n \n __**Stickers:**__ ' + '\n' +  stickerOne + '\n' + stickerTwo + '\n' + stickerThree
+                stickerOutput = '\n \n __**Stickers:**__ ' + '\n' +  stickerOne + '\n' + stickerTwo + '\n' + stickerThree # Sticker output to be used in embed.
 
-              if len(jsonToPython['iteminfo']['stickers']) == 2:
+              if len(jsonToPython['iteminfo']['stickers']) == 2: # If there are 2 stickers, the following code is executed.
+                #- Stickers available with wear perecents as suffix. 
                 stickerOne = '(' + str(wearOne)[0:2] +'%) ' + jsonToPython['iteminfo']['stickers'][0]['name']
                 stickerTwo = '(' + str(wearTwo)[0:2] +'%) ' + jsonToPython['iteminfo']['stickers'][1]['name']
-                stickerOutput = '\n \n __**Stickers:**__ ' + '\n' +  stickerOne + '\n' + stickerTwo 
+                stickerOutput = '\n \n __**Stickers:**__ ' + '\n' +  stickerOne + '\n' + stickerTwo # Sticker output to be used in embed.
               
-              if len(jsonToPython['iteminfo']['stickers']) == 1:
+              if len(jsonToPython['iteminfo']['stickers']) == 1: # If there is 1 sticker, the following code is executed.
+                #- Stickers available with wear perecents as suffix. 
                 stickerOne = '(' + str(wearOne)[0:2] +'%) ' + jsonToPython['iteminfo']['stickers'][0]['name']
-                stickerOutput = '\n \n __**Stickers:**__ ' + '\n' +  stickerOne 
+                stickerOutput = '\n \n __**Stickers:**__ ' + '\n' +  stickerOne # Sticker output to be used in embed.
+                
+              
               
 
 
-
-
-
-            if jsonToPython['iteminfo']['killeaterscoretype'] == None:
+            if jsonToPython['iteminfo']['killeaterscoretype'] == None: # If the skin is not stat trak the following code is executed.
               rawMarketSkin = raw_skin + marketWear
             
-            else:
+            else: # If the skin is stat trak, the following code is executed. 
               rawMarketSkin = statSkin_raw + marketWear
 
-
-            marketSkinOutput = rawMarketSkin.replace(' ', '+')
-            patternIndex = '**Index: **' + str(jsonToPython['iteminfo']['paintseed']) # Pattern index with suffix. 
+            marketSkinOutput = rawMarketSkin.replace(' ', '+') # Replaces all spaces in the name of the skin with +'s, used for urls. 
             
-            print(marketSkinOutput)
-
-            price = 'https://steamcommunity.com/market/priceoverview/?appid=730&currency=1&market_hash_name=' + marketSkinOutput
-
-            print(price)
+            patternIndex = '**Index: **' + str(jsonToPython['iteminfo']['paintseed']) # Pattern index with suffix. # Pattern index with suffix, for use in embed. 
+            
             
 
-            for priceAPIData in urllib.request.urlopen(price):
-              jsonToPython = json.loads(priceAPIData.decode('utf-8'))
+            for priceAPIData in urllib.request.urlopen('https://steamcommunity.com/market/priceoverview/?appid=730&currency=1&market_hash_name=' + marketSkinOutput): # Accesses steam API for skin prices. 
+              jsonToPython = json.loads(priceAPIData.decode('utf-8')) # Loads steam api as json, decodes as utf-8. 
 
-              if str('median_price') not in jsonToPython:
-                marketMedianOutput = '**Avg. Price:** *Not available.*'
+              if str('median_price') not in jsonToPython: # If the skin doesn't have an average price, the following code is executed. 
+                marketMedianOutput = '**Avg. Price:** *Not available.*' # Suffix of not available added to avg price. 
               
-              else: 
-                marketMedian = jsonToPython['median_price'] # Opens API for CS:GO Skins. 
-                marketMedianOutput = '**Avg. Price:** ' + marketMedian
+              else: # If the skin does have an average price, the following code is executed. 
+                marketMedian = jsonToPython['median_price'] # Assigns marketMedian the value of the skin's average price (str)
+                marketMedianOutput = '**Avg. Price:** ' + marketMedian # marketMedian prefixed to avg price output, to be used in embed. 
             
 
-            marketLink = 'https://steamcommunity.com/market/search?appid=730&q=' + marketSkinOutput
-            marketLinkOutput = '**Market: **[[Link]]' + '(' + marketLink + ')'
+            marketLink = 'https://steamcommunity.com/market/search?appid=730&q=' + marketSkinOutput # Link to market listings of the skin. 
+            marketLinkOutput = '**Market: **[[Link]]' + '(' + marketLink + ')' # Market link as hyperklink, to be used in embed. 
             
 
-            bitskinsLink = 'https://bitskins.com/?market_hash_name=' + marketSkinOutput + '&appid=730'
-            bitskinsLinkOutput = '**Bitskins: **[[Link]]' + '(' + bitskinsLink + ')' 
-            for apiData in urllib.request.urlopen('https://api.csgofloat.com/?url=' + inspectUrl): # Opens API for CS:GO Skins. 
-              jsonToPython = json.loads(apiData.decode('utf-8')) # Loads json from apiData.
+            bitskinsLink = 'https://bitskins.com/?market_hash_name=' + marketSkinOutput + '&appid=730' # Link to bitskins listings of the skin. 
+            bitskinsLinkOutput = '**Bitskins: **[[Link]]' + '(' + bitskinsLink + ')' # bitSKins link as hyperlink, to be used in embed.
+            
+            for apiData in urllib.request.urlopen('https://api.csgofloat.com/?url=' + inspectUrl): # Re-opens CSGOFloat api. 
+              jsonToPython = json.loads(apiData.decode('utf-8')) # Loads data from API, decodes to utf-8. 
 
-            if jsonToPython['iteminfo']['defindex'] in knifeID:
+            if jsonToPython['iteminfo']['defindex'] in knifeID: # If the skin is a knife, the following code is executed. 
+              #--- Adds knife star prefix. 
               msgOutput = '__**Information:**__ \n' + skin + '\n' + suffixWear + '\n' + skin_floatValue + '\n' + str(patternIndex) + '\n \n __**Listings:**__ \n' + marketLinkOutput + '\n' + bitskinsLinkOutput + '\n' + marketMedianOutput  
 
               msgOutputStat = '__**Information:**__ \n' + statSkin + '\n' + suffixWear + '\n' + skin_floatValue + '\n' + str(patternIndex) + '\n \n __**Listings:**__ \n' + marketLinkOutput + '\n' + bitskinsLinkOutput + '\n' + marketMedianOutput 
             
-            else:
+            else: # If the skin is not a knife, the following code is executed. 
               msgOutput = '__**Information:**__ \n' + skin + '\n' + suffixWear + '\n' + skin_floatValue + '\n' + str(patternIndex) + '\n \n __**Listings:**__ \n' + marketLinkOutput + '\n' + bitskinsLinkOutput + '\n' + marketMedianOutput + '\n' + stickerOutput 
 
               msgOutputStat = '__**Information:**__ \n' + statSkin + '\n' + suffixWear + '\n' + skin_floatValue + '\n' + str(patternIndex) + '\n \n __**Listings:**__ \n' + marketLinkOutput + '\n' + bitskinsLinkOutput + '\n' + marketMedianOutput + '\n' + stickerOutput
+              
 
-
-
-
-            print(marketSkinOutput)
-
-
-
-            for apiData in urllib.request.urlopen('https://api.csgofloat.com/?url=' + inspectUrl):
-              jsonToPython = json.loads(apiData.decode('utf-8')) # Loads json from apiData.
-
-            if jsonToPython['iteminfo']['killeaterscoretype'] == None:
+            if jsonToPython['iteminfo']['killeaterscoretype'] == None: # If the skin is not stat trak, the following code is executed. 
+              #--- Final embed output, message printed to end user. 
               emb = discord.Embed(description= msgOutput, colour = 0x00b2ff) # Outputs data of the skin fetched from the inspect url. 
               emb.set_image(url=screenShotRedir) # Sets the embed as an image; screenShotRedir
               await client.send_message(message.channel, embed=emb) # Prints the embe
             
-            else: 
+            else: # If the skin is stat trak, the following code is executed. 
+              #--- Final embed output, message printed to end user. 
               emb = discord.Embed(description= msgOutputStat , colour = 0x00b2ff) # Outputs data of the skin fetched from the inspect url. 
               emb.set_image(url=screenShotRedir) # Sets the embed as an image; screenShotRedir
               await client.send_message(message.channel, embed=emb) # Prints the embed.
 
-token = os.environ.get("DISCORD_BOT_SECRET") # Assigning secret token. 
-client.run('NTI3MjU0OTY0MjU1MzI2MjI4.DwREYQ.Bo2ncCt3BYFA3e-GmNxtNLZaFMA') # Verifying secret token. 
+client.run('NTI3MjU0OTY0MjU1MzI2MjI4.DwREYQ.Bo2ncCt3BYFA3e-GmNxtNLZaFMA') # Running bot with secret token.
+#--- IMPORTANT: THIS TOKEN GIVES ACCESS TO BOT, DON'T LEAK. IF USED ON GITHUB MAKE SURE REPO IS PRIVATE 
