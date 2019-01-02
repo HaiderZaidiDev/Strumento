@@ -278,4 +278,4 @@ async def on_message(message): # Defines event response. (Executes on message.)
               await client.send_message(message.channel, embed=emb) # Prints the embed.
 
 token = os.environ.get("DISCORD_BOT_SECRET") # Assigning secret token. 
-client.run(token) # Verifying secret token. 
+client.run('NTI3MjU0OTY0MjU1MzI2MjI4.DwREYQ.Bo2ncCt3BYFA3e-GmNxtNLZaFMA') # Verifying secret token. 
