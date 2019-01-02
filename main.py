@@ -228,7 +228,7 @@ async def on_message(message): # Defines event response. (Executes on message.)
             
 
             for priceAPIData in urllib.request.urlopen(price):
-              jsonToPython = json.loads(priceAPIData)
+              jsonToPython = json.loads(priceAPIData.decode('utf-8'))
 
               if str('median_price') not in jsonToPython:
                 marketMedianOutput = '**Avg. Price:** *Not available.*'
@@ -265,7 +265,7 @@ async def on_message(message): # Defines event response. (Executes on message.)
 
 
             for apiData in urllib.request.urlopen('https://api.csgofloat.com/?url=' + inspectUrl):
-              jsonToPython = json.loads(apiData) # Loads json from apiData.
+              jsonToPython = json.loads(apiData.decode('utf-8')) # Loads json from apiData.
 
             if jsonToPython['iteminfo']['killeaterscoretype'] == None:
               emb = discord.Embed(description= msgOutput, colour = 0x00b2ff) # Outputs data of the skin fetched from the inspect url. 
