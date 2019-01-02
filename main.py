@@ -61,6 +61,8 @@ async def on_message(message): # Defines event response. (Executes on message.)
 
             if len(jsonToPython['iteminfo']['stickers']) > 0: # If the skin has a sticker, the following code is executed.
               #--- Souvenier Detection
+              #- NOTE: This may give false positives/not always work accurately, i.e if a gold sticker was put on a unboxed skin, or stickers were removed from a souvenier skin this would not detect that. 
+              #        Always look at the screenshot to determine if the skin is souvenier or not for 100% accuracy. 
               if jsonToPython['iteminfo']['origin'] == 8 and str('gold') in jsonToPython['iteminfo']['stickers'][0]['codename']: # If the skin was unboxed, and has a sticker with the word gold in it the following code is executed.
                 skin = '**Skin: ** Souvenir ' + weapon_type + ' | ' + skin_name # Adds souvenier suffix to skin.
                 raw_skin = 'Souvenir ' + weapon_type + ' %7C ' + skin_name # Adds souvenier suffix to skin name with percent encoding.
@@ -241,6 +243,8 @@ async def on_message(message): # Defines event response. (Executes on message.)
             bitskinsLink = 'https://bitskins.com/?market_hash_name=' + marketSkinOutput + '&appid=730' # Link to bitskins listings of the skin. 
             bitskinsLinkOutput = '**Bitskins: **[[Link]]' + '(' + bitskinsLink + ')' # bitSKins link as hyperlink, to be used in embed.
             
+            screenShotRedirOutput - '**Screenshot: ** [[Link]]' + '(' + screenShotRedir + ')'
+            
             for apiData in urllib.request.urlopen('https://api.csgofloat.com/?url=' + inspectUrl): # Re-opens CSGOFloat api. 
               jsonToPython = json.loads(apiData.decode('utf-8')) # Loads data from API, decodes to utf-8. 
 
@@ -248,12 +252,12 @@ async def on_message(message): # Defines event response. (Executes on message.)
               #--- Adds knife star prefix. 
               msgOutput = '__**Information:**__ \n' + skin + '\n' + suffixWear + '\n' + skin_floatValue + '\n' + str(patternIndex) + '\n \n __**Listings:**__ \n' + marketLinkOutput + '\n' + bitskinsLinkOutput + '\n' + marketMedianOutput  
 
-              msgOutputStat = '__**Information:**__ \n' + statSkin + '\n' + suffixWear + '\n' + skin_floatValue + '\n' + str(patternIndex) + '\n \n __**Listings:**__ \n' + marketLinkOutput + '\n' + bitskinsLinkOutput + '\n' + marketMedianOutput 
+              msgOutputStat = '__**Information:**__ \n' + statSkin + '\n' + suffixWear + '\n' + skin_floatValue + '\n' + str(patternIndex) + '\n' + screenShotRedirOutput + '\n \n __**Listings:**__ \n' + marketLinkOutput + '\n' + bitskinsLinkOutput + '\n' + marketMedianOutput 
             
             else: # If the skin is not a knife, the following code is executed. 
-              msgOutput = '__**Information:**__ \n' + skin + '\n' + suffixWear + '\n' + skin_floatValue + '\n' + str(patternIndex) + '\n \n __**Listings:**__ \n' + marketLinkOutput + '\n' + bitskinsLinkOutput + '\n' + marketMedianOutput + '\n' + stickerOutput 
+              msgOutput = '__**Information:**__ \n' + skin + '\n' + suffixWear + '\n' + skin_floatValue + '\n' + str(patternIndex) + '\n' + screenShotRedirOutput + '\n \n __**Listings:**__ \n' + marketLinkOutput + '\n' + bitskinsLinkOutput + '\n' + marketMedianOutput + '\n' + stickerOutput 
 
-              msgOutputStat = '__**Information:**__ \n' + statSkin + '\n' + suffixWear + '\n' + skin_floatValue + '\n' + str(patternIndex) + '\n \n __**Listings:**__ \n' + marketLinkOutput + '\n' + bitskinsLinkOutput + '\n' + marketMedianOutput + '\n' + stickerOutput
+              msgOutputStat = '__**Information:**__ \n' + statSkin + '\n' + suffixWear + '\n' + skin_floatValue + '\n' + str(patternIndex) +  '\n' + screenShotRedirOutput + '\n \n __**Listings:**__ \n' + marketLinkOutput + '\n' + bitskinsLinkOutput + '\n' + marketMedianOutput + '\n' + stickerOutput
               
 
             if jsonToPython['iteminfo']['killeaterscoretype'] == None: # If the skin is not stat trak, the following code is executed. 
