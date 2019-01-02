@@ -316,6 +316,6 @@ async def on_message(message): # Defines event response. (Executes on message.)
               emb.set_image(url=screenShotRedir) # Sets the embed as an image; screenShotRedir
               await client.send_message(message.channel, embed=emb) # Prints the embed.
               
-print(sys.argbv[0])
+print(sys.argv[0])
 client.run('NTI3MjU0OTY0MjU1MzI2MjI4.DwREYQ.Bo2ncCt3BYFA3e-GmNxtNLZaFMA') # Running bot with secret token.
 #--- IMPORTANT: THIS TOKEN GIVES ACCESS TO BOT, DON'T LEAK. IF USED ON GITHUB MAKE SURE REPO IS PRIVATE 
