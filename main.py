@@ -20,26 +20,51 @@ async def on_ready(): # Defines event response. (Executes on successful join).
 async def on_message(message): # Defines event response. (Executes on message.)
     if message.author != client.user: # If the message isn't sent by the bot, the following code is executed. 
     
-      if message.content.startswith('+ping'):
+      if message.content.startswith('+ping'): # If the user enters +ping, the following code is executed.
         await client.send_message(message.channel, 'Pong!')
       
-      if message.content.startswith('+help'):
-        helpMessage = '''
+      if message.content.startswith('+info'): # If the user enters +info, the following code is executed. 
+        infoMessage = '''
         __**Information**__:
         
         This bot was made by Nitr0us#5090, if you have any questions or require support please contact him.
         
         __**Commands**__:
         
-        **Screenshot:**
-        ```
-          Usage: +screenshot <inspect url> 
-          Purpose: Displays an informative screenshot of your CS:GO item, along with various pricing/listing information. 
-          Example: +screenshot steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561198809630962A15209744033D7839232755824766269
-          Notes: This may take a few seconds to generate. 
-         ```
+        **1) Screenshot:**
+        Usage: +screenshot <inspecturl> 
+        Purpose: Displays an informative screenshot of your CS:GO item, along with various pricing/listing information.
+        
+        Note: This may take a few seconds to generate. 
+        
+        **2) Ping:**
+        Usage: +ping
+        Purpose: To test if the bot is online, and behaving correctly. 
+        
+        Note: If this doesn't result in the bot sending a message, contact the bot developer. 
+        
+        **3) Donate:**
+        Usage: +donate
+        Purpose: Provides the bot developers paypal.me link. 
+        
+        Note: Hosting a Discord bot does cost a bit of money, all donations will go towards hosting bots.
+        
+        __**Sources:**__:
+        Listed below are the sources/api used to fetch the data provided in the +screenshot command. 
+        
+        **1) [CSGOFloat](https://csgofloat.com/)**
+        Type: API 
+        Use:  Used to determine all information provided under the 'Information:' section of the screenshot. 
+        
+        ** 2) [Steam](https://store.steampowered.com/)
+        Type: API
+        Use: Used to determine the average prices of skins. 
+        
+        ** 3) [CSGO.Gallery](https://cs.deals/)
+        Type: URL
+        Use: Generated screenshots. 
         '''
-        emb = discord.Embed(description=helpMessage, colour= 0x00b2ff)
+        emb = discord.Embed(description=infoMessage, colour= 0x00b2ff)
         await client.send_message(message.channel, embed=emb)
 
 
