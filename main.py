@@ -245,7 +245,7 @@ async def on_message(message): # Defines event response. (Executes on message.)
             bitskinsLink = 'https://bitskins.com/?market_hash_name=' + marketSkinOutput + '&appid=730'
             bitskinsLinkOutput = '**Bitskins: **[[Link]]' + '(' + bitskinsLink + ')' 
             for apiData in urllib.request.urlopen('https://api.csgofloat.com/?url=' + inspectUrl): # Opens API for CS:GO Skins. 
-              jsonToPython = json.loads(apiData) # Loads json from apiData.
+              jsonToPython = json.loads(apiData.decode('utf-8')) # Loads json from apiData.
 
             if jsonToPython['iteminfo']['defindex'] in knifeID:
               msgOutput = '__**Information:**__ \n' + skin + '\n' + suffixWear + '\n' + skin_floatValue + '\n' + str(patternIndex) + '\n \n __**Listings:**__ \n' + marketLinkOutput + '\n' + bitskinsLinkOutput + '\n' + marketMedianOutput  
