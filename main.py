@@ -31,11 +31,13 @@ async def on_message(message): # Defines event response. (Executes on message.)
         
         __**Commands**__:
         
-        Screenshot:
+        **Screenshot:**
+        ```
           Usage: +screenshot <inspect url> 
           Purpose: Displays an informative screenshot of your CS:GO item, along with various pricing/listing information. 
           Example: +screenshot steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561198809630962A15209744033D7839232755824766269
           Notes: This may take a few seconds to generate. 
+         ```
         '''
         emb = discord.Embed(description=helpMessage, colour= 0x00b2ff)
         await client.send_message(message.channel, embed=emb)
