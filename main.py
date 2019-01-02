@@ -243,7 +243,7 @@ async def on_message(message): # Defines event response. (Executes on message.)
             bitskinsLink = 'https://bitskins.com/?market_hash_name=' + marketSkinOutput + '&appid=730' # Link to bitskins listings of the skin. 
             bitskinsLinkOutput = '**Bitskins: **[[Link]]' + '(' + bitskinsLink + ')' # bitSKins link as hyperlink, to be used in embed.
             
-            screenShotRedirOutput - '**Screenshot: ** [[Link]]' + '(' + screenShotRedir + ')'
+            screenShotRedirOutput = '**Screenshot: ** [[Link]]' + '(' + screenShotRedir + ')'
             
             for apiData in urllib.request.urlopen('https://api.csgofloat.com/?url=' + inspectUrl): # Re-opens CSGOFloat api. 
               jsonToPython = json.loads(apiData.decode('utf-8')) # Loads data from API, decodes to utf-8. 
