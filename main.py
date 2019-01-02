@@ -69,7 +69,7 @@ async def on_message(message): # Defines event response. (Executes on message.)
             
             
             StrFloatValue = str(jsonToPython['iteminfo']['floatvalue']) # Float value as string. 
-            skin_floatValue = '**Float: **'  + StrFloatValue # Float value with suffix, used in embed. 
+            skin_floatValue = '**Float: **'  + StrFloatValue[0:11] # Float value with suffix, used in embed. 
             
             #--- Wear detection
             #- Determines wear of the skin based upon the float value. 
