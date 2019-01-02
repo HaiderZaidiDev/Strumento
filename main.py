@@ -2,6 +2,7 @@ import discord # Imports discord module.
 import urllib.request # Imports urllib.request module
 import os # Imports os module. 
 import json # Imports Json Module
+import sys
 
 client = discord.Client() # Creates discord client. 
 
@@ -314,6 +315,7 @@ async def on_message(message): # Defines event response. (Executes on message.)
               emb = discord.Embed(description= msgOutputStat , colour = 0x00b2ff) # Outputs data of the skin fetched from the inspect url. 
               emb.set_image(url=screenShotRedir) # Sets the embed as an image; screenShotRedir
               await client.send_message(message.channel, embed=emb) # Prints the embed.
-
+              
+print(sys.argbv[0])
 client.run('NTI3MjU0OTY0MjU1MzI2MjI4.DwREYQ.Bo2ncCt3BYFA3e-GmNxtNLZaFMA') # Running bot with secret token.
 #--- IMPORTANT: THIS TOKEN GIVES ACCESS TO BOT, DON'T LEAK. IF USED ON GITHUB MAKE SURE REPO IS PRIVATE 
