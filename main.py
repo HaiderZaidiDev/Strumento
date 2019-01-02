@@ -31,36 +31,35 @@ async def on_message(message): # Defines event response. (Executes on message.)
         
         __**Commands**__:
         
-        **1) Screenshot:**
+        **1)** Screenshot:
         Usage: +screenshot <inspecturl> 
         Purpose: Displays an informative screenshot of your CS:GO item, along with various pricing/listing information.
         
         Note: This may take a few seconds to generate. 
         
-        **2) Ping:**
+        **2)** Ping:
         Usage: +ping
         Purpose: To test if the bot is online, and behaving correctly. 
         
         Note: If this doesn't result in the bot sending a message, contact the bot developer. 
         
-        **3) Donate:**
+        **3)** Donate:
         Usage: +donate
         Purpose: Provides the bot developers paypal.me link. 
         
         Note: Hosting a Discord bot does cost a bit of money, all donations will go towards hosting bots.
         
         __**Sources:**__:
-        Listed below are the sources/api used to fetch the data provided in the +screenshot command. 
         
-        **1) [CSGOFloat](https://csgofloat.com/)**
+        **1)** [CSGOFloat](https://csgofloat.com/)
         Type: API 
         Use:  Used to determine all information provided under the 'Information:' section of the screenshot. 
         
-        ** 2) [Steam](https://store.steampowered.com/)
+        ** 2)** [Steam](https://store.steampowered.com/)
         Type: API
         Use: Used to determine the average prices of skins. 
         
-        ** 3) [CSGO.Gallery](https://cs.deals/)
+        ** 3)** [CSGO.Gallery](https://cs.deals/)
         Type: URL
         Use: Generated screenshots. 
         '''
