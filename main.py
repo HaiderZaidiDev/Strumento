@@ -257,7 +257,7 @@ async def on_message(message): # Defines event response. (Executes on message.)
             else: # If the skin is not a knife, the following code is executed. 
               msgOutput = '__**Information:**__ \n' + skin + '\n' + suffixWear + '\n' + skin_floatValue + '\n' + str(patternIndex) + '\n' + screenShotRedirOutput + '\n \n __**Listings:**__ \n' + marketLinkOutput + '\n' + bitskinsLinkOutput + '\n' + marketMedianOutput + '\n' + stickerOutput 
 
-              msgOutputStat = '__**Information:**__ \n' + statSkin + '\n' + suffixWear + '\n' + skin_floatValue + '\n' + str(patternIndex) +  '\n' + screenShotRedirOutput + '\n \n __**Listings:**__ \n' + marketLinkOutput + '\n' + bitskinsLinkOutput + '\n' + marketMedianOutput + '\n' + stickerOutput
+              msgOutputStat = '__**Information:**__ \n' + statSkin + '\n' + suffixWear + '\n' + skin_floatValue + '\n' + str(patternIndex) +  '\n' + screenShotRedirOutput + '\n \n __**Listings:**__ \n' + marketLinkOutput + '\n' + bitskinsLinkOutput + '\n' + marketMedianOutput + stickerOutput
               
 
             if jsonToPython['iteminfo']['killeaterscoretype'] == None: # If the skin is not stat trak, the following code is executed. 
