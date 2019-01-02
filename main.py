@@ -40,7 +40,7 @@ async def on_message(message): # Defines event response. (Executes on message.)
         else: # If the inspect url is valid, the following code is executed:
           knifeID = [500, 505,506, 507, 508, 509, 512, 514, 515, 516, 519, 520, 522, 523]
           for apiData in urllib.request.urlopen('https://api.csgofloat.com/?url=' + inspectUrl): # Opens API for CS:GO Skins. 
-            jsonToPython = json.loads(apiData.decode('utf-8') # Loads json from apiData.
+            jsonToPython = json.loads(apiData.decode('utf-8')) # Loads json from apiData.
 
 
 
