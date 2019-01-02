@@ -123,7 +123,7 @@ async def on_message(message): # Defines event response. (Executes on message.)
             if len(jsonToPython['iteminfo']['stickers']) == 1:
               wearOne = jsonToPython['iteminfo']['stickers'][0]['wear']
 
-            if jsonToPython['iteminfo']['stickers'] == 0:
+            if len(jsonToPython['iteminfo']['stickers']) == 0:
               stickerOutput =  ''
 
             
