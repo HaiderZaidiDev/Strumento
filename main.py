@@ -23,7 +23,7 @@ async def on_message(message): # Defines event response. (Executes on message.)
       
       if message.content.startswith('+servers'): #  If the user enters +servers, the following code is executed. 
         serverCount = len(client.servers) # Number of servers the bot is currently in. 
-        await client.send_message(message.channel, ''' I'm currently being used in''' + str(serverCount) + 'server(s)') # Bot output. 
+        await client.send_message(message.channel, ''' I'm currently being used in''' + str(serverCount) + ' server(s).') # Bot output. 
         
       if message.content.startswith('+ping'): # If the user enters +ping, the following code is executed.
         await client.send_message(message.channel, 'Pong!')
