@@ -21,7 +21,7 @@ async def on_ready(): # Defines event response. (Executes on successful join).
 async def on_message(message): # Defines event response. (Executes on message.)
     if message.author != client.user: # If the message isn't sent by the bot, the following code is executed. 
       if message.content.startswith('+servers'):
-        await cliend.send_message(message.channel, ''' I'm currently being used in + str(serverCount) server(s):''') 
+        await client.send_message(message.channel, ''' I'm currently being used in + str(serverCount) server(s):''') 
         
       if message.content.startswith('+ping'): # If the user enters +ping, the following code is executed.
         await client.send_message(message.channel, 'Pong!')
