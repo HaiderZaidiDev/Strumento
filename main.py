@@ -23,10 +23,12 @@ async def on_message(message): # Defines event response. (Executes on message.)
       
       if message.content.startswith('+servers'): #  If the user enters +servers, the following code is executed. 
         serverCount = len(client.servers) # Number of servers the bot is currently in. 
-        await client.send_message(message.channel, ''' I'm currently being used in''' + str(serverCount) + ' server(s).') # Bot output. 
+        emb = discord.Embed(description = " I'm currently being used in" + str(serverCount) + ' server(s).', colour = 0x00b2ff) 
+        await client.send_message(message.channel, embed = emb) # Bot output. 
         
       if message.content.startswith('+ping'): # If the user enters +ping, the following code is executed.
-        await client.send_message(message.channel,  str(client.ping) + 'ms') 
+        emb = discord.Embed(description='Online', colour = 0x00b2ff)
+        await client.send_message(message.channel, embed = emb) 
         
       if message.content.startswith('+info'): # If the user enters +info, the following code is executed. 
         infoMessage = '''
