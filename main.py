@@ -84,7 +84,7 @@ async def on_message(message): # Defines event response. (Executes on message.)
 
         screenShotRedir = urllib.request.urlopen(screenShotOld).geturl() # Assigns the final redirect link to variable screenShotRedir
 
-        if screenShotRedir == str('https://cs.deals/'): # If the final redirect returns back to the cs.deals homepage, meaning the inspect url was incorrect, the following code is executed. 
+        if screenShotRedir == str('https://cs.deals/screenshot'): # If the final redirect returns back to the cs.deals homepage, meaning the inspect url was incorrect, the following code is executed. 
             ssError = 'An invalid inspect url was provided, please try again.'
             emb = discord.Embed(description=ssError, colour = 0x00b2ff)
             await client.send_message(message.channel, embed = emb) # Prints message to user stating inspect url was invalid. 
