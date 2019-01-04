@@ -22,8 +22,7 @@ async def on_message(message): # Defines event response. (Executes on message.)
     if message.author != client.user: # If the message isn't sent by the bot, the following code is executed. 
       
       if message.content.startswith('+servers'): #  If the user enters +servers, the following code is executed. 
-        serverCount = len(client.servers) # Number of servers the bot is currently in. 
-        emb = discord.Embed(description = " I'm currently being used in " + str(serverCount) + ' server(s).', colour = 0x00b2ff) 
+        emb = discord.Embed(description = " I'm currently being used in " + str(len(client.servers)) + ' server(s).', colour = 0x00b2ff) 
         await client.send_message(message.channel, embed = emb) # Bot output. 
         
       if message.content.startswith('+ping'): # If the user enters +ping, the following code is executed.
@@ -75,24 +74,21 @@ async def on_message(message): # Defines event response. (Executes on message.)
 
 
       if message.content.startswith('+screenshot'): # If the users message starts with +screenshot the following code is executed.
-
+        
         inspectUrl = message.content.replace('+screenshot ','') # Removes +screenshot and the following space from the users message, assigns it to a variable.
         screenShot = "https://csgo.gallery/" + inspectUrl # Appends inspect url to csgo.gallery link. 
 
+        screenShotRedir = requests.get(screenshot)
 
-        screenShotOld = urllib.request.Request(screenShot, headers={'User-Agent': 'Mozilla/5.0'}) # Requests url of the appending link with user agent as Mozilla. This is done to avoid 403 errors when getting the final redirect link.
-
-        screenShotRedir = urllib.request.urlopen(screenShotOld).geturl() # Assigns the final redirect link to variable screenShotRedir
-
-        if screenShotRedir == str('https://cs.deals/'): # If the final redirect returns back to the cs.deals homepage, meaning the inspect url was incorrect, the following code is executed. 
-            await client.send_message(message.channel, 'An invalid inspect url was provided, please try again.') # Prints message to user stating inspect url was invalid. 
+        if screenShotRedir == str('https://cs.deals/screenshot'): # If the final redirect returns back to the cs.deals homepage, meaning the inspect url was incorrect, the following code is executed. 
+            emb = discord.Embed(description='An invalid inspect url was provided, please try again.', colour = 0x00b2ff)
+            await client.send_message(message.channel, embed = emb) # Prints message to user stating inspect url was invalid. 
 
         else: # If the inspect url is valid, the following code is executed:
-          knifeID = [500, 505,506, 507, 508, 509, 512, 514, 515, 516, 519, 520, 522, 523]
+          knifeID = [500, 505, 506, 507, 508, 509, 512, 514, 515, 516, 519, 520, 522, 523]
+          
           for apiData in urllib.request.urlopen('https://api.csgofloat.com/?url=' + inspectUrl): # Opens API for CS:GO Skins. 
             jsonToPython = json.loads(apiData.decode('utf-8')) # Loads json from apiData.
-
-
 
             weapon_type = jsonToPython['iteminfo']['weapon_type'] # Weapon name.
             skin_name = jsonToPython['iteminfo']['item_name'] # Skin Name.
