@@ -81,11 +81,11 @@ async def on_message(message): # Defines event response. (Executes on message.)
 
         screenShotRedir = requests.get(screenShot).url
 
-        if screenShotRedir == str('https://cs.deals/screenshot'): # If the final redirect returns back to the cs.deals homepage, meaning the inspect url was incorrect, the following code is executed. 
-            emb = discord.Embed(description='An invalid inspect url was provided, please try again.', colour = 0x00b2ff)
-            await client.send_message(message.channel, embed = emb) # Prints message to user stating inspect url was invalid. 
+        if screenShotRedir == str('https://cs.deals/screenshot'): 
+          emb = discord.Embed(description='An invalid inspect url was provided, please try again.', colour = 0x00b2ff)
+          await client.send_message(message.channel, embed = emb) # Prints message to user stating inspect url was invalid. 
 
-        else: # If the inspect url is valid, the following code is executed:
+        else: 
           knifeID = [500, 505, 506, 507, 508, 509, 512, 514, 515, 516, 519, 520, 522, 523]
           
           for apiData in urllib.request.urlopen('https://api.csgofloat.com/?url=' + inspectUrl): # Opens API for CS:GO Skins. 
