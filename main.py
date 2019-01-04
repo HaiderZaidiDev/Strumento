@@ -3,6 +3,7 @@ import urllib.request # Imports urllib.request module
 import os # Imports os module. 
 import json # Imports Json Module
 import sys
+import requests
 
 client = discord.Client() # Creates discord client. 
 
