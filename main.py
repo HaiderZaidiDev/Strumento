@@ -152,7 +152,7 @@ async def on_message(message): # Defines event response. (Executes on message.)
             
             else: 
               for stickers in jsonToPython['iteminfo']['stickers']:
-                i = len(stickers in jsonToPython['iteminfo']['stickers'])
+                i = len(jsonToPython['iteminfo']['stickers'])
                 sCount = 0
                 
                 while sCount < i:
