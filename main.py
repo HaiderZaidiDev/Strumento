@@ -126,16 +126,16 @@ async def on_message(message): # Defines event response. (Executes on message.)
             if raw_floatValue < 0.07: # If the flow is below 0.07 the follopw
               wear = 'Factory New'
             
-            if raw_floatValue > 0.07 and raw_floatValue < 0.15:
+            elif raw_floatValue > 0.07 and raw_floatValue < 0.15:
               wear = 'Minimal Wear'
 
-            if raw_floatValue > 0.15 and raw_floatValue < 0.37:
+            elif raw_floatValue > 0.15 and raw_floatValue < 0.37:
               wear = 'Field-Tested'
 
-            if raw_floatValue > 0.37 and raw_floatValue < 0.44:
+            elif raw_floatValue > 0.37 and raw_floatValue < 0.44:
               wear = 'Well-Worn'
 
-            if raw_floatValue > 0.44:
+            elif raw_floatValue > 0.44:
               wear = 'Battle-Scarred'
             
 
