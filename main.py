@@ -147,116 +147,18 @@ async def on_message(message): # Defines event response. (Executes on message.)
 
 
             #------- STICKER DETECTION
-            if len(jsonToPython['iteminfo']['stickers']) == 4: # If there are 4 stickers, the following code is executed.
-              wearOne = jsonToPython['iteminfo']['stickers'][0]['wear']
-              wearTwo = jsonToPython['iteminfo']['stickers'][1]['wear']
-              wearThree = jsonToPython['iteminfo']['stickers'][2]['wear']
-              wearFour = jsonToPython['iteminfo']['stickers'][3]['wear']
+            if jsonToPythonp['iteminfo']['stickers'] == None:
+              stickerOutput = ''
             
-            if len(jsonToPython['iteminfo']['stickers']) == 3: # If there are 3 stickers the following code is executed.
-              wearOne = jsonToPython['iteminfo']['stickers'][0]['wear']
-              wearTwo = jsonToPython['iteminfo']['stickers'][1]['wear']
-              wearThree = jsonToPython['iteminfo']['stickers'][2]['wear']
-
-            if len(jsonToPython['iteminfo']['stickers']) == 2: # If there are 2 stickers the following code is executed.
-              wearOne = jsonToPython['iteminfo']['stickers'][0]['wear']
-              wearTwo = jsonToPython['iteminfo']['stickers'][1]['wear']
-
-            if len(jsonToPython['iteminfo']['stickers']) == 1: # If there is 1 sticker the following code is executed.
-              wearOne = jsonToPython['iteminfo']['stickers'][0]['wear']
-
-              
-              
-            if len(jsonToPython['iteminfo']['stickers']) == 0: # If there are no stickers the following code is executed.
-              stickerOutput =  ''
-            #--- Sticker wear values. 
-            else: # If there are stickers on the skin, the following code is executed.
-              if len(jsonToPython['iteminfo']['stickers']) == 4: # If there are 4 stickers the following code is executed.
+            else: 
+              for stickers in jsonToPython['iteminfo']['stickers']:
+                stickerName = stickers['iteminfo']['stickers']['name']
+                stickerWear = stickers['iteminfo']['stickers']['wear']
                 
-                if wearOne == None: # The code below is executed if the sticker wear is null.
-                  wearOne = 0 # Assigns 0 as the wear value of the sticker.
-                else: # If the sticker wear is not null the following code is executed.
-                  wearOne = wearOne*100 # Multiplies the wear of the sticker by 100 (to become a percent).
-
-                if wearTwo == None: # The code below is executed if the sticker wear is null.
-                  wearTwo = 0 # Assigns 0 as the wear value of the sticker.
-                else: # If the sticker wear is not null the following code is executed.
-                  wearTwo = wearTwo*100 # Multiplies the wear of the sticker by 100 (to become a percent).
-
-                if wearThree == None: # The code below is executed if the sticker wear is null.
-                  wearThree = 0 # Assigns 0 as the wear value of the sticker.
-                else: # If the sticker wear is not null the following code is executed.
-                  wearThree = wearThree*100# Multiplies the wear of the sticker by 100 (to become a percent).
-
-                if wearFour == None: # The code below is executed if the sticker wear is null.
-                  wearFour = 0 # Assigns 0 as the wear value of the sticker.
-                else: # If the sticker wear is not null the following code is executed.
-                  wearFour = wearFour*100 # Multiplies the wear of the sticker by 100 (to become a percent).
-              
-              if len(jsonToPython['iteminfo']['stickers']) == 3: # If there are 3 stickers the following code is executed.
+                if stickerWear = None:
+                  stickerWear = 0
                 
-                if wearOne == None: # The code below is executed if the sticker wear is null.
-                  wearOne = 0 # Assigns 0 as the wear value of the sticker.
-                else: # If the sticker wear is not null the following code is executed.
-                  wearOne = wearOne*100 # Multiplies the wear of the sticker by 100 (to become a percent).
-
-                if wearTwo == None: # The code below is executed if the sticker wear is null.
-                  wearTwo = 0 # Assigns 0 as the wear value of the sticker.
-                else: # If the sticker wear is not null the following code is executed.
-                  wearTwo = wearTwo*100 # Multiplies the wear of the sticker by 100 (to become a percent).
-
-                if wearThree == None: # The code below is executed if the sticker wear is null.
-                  wearThree = 0  # Assigns 0 as the wear value of the sticker.
-                else: # If the sticker wear is not null the following code is executed.
-                  wearThree = wearThree*100 # Multiplies the wear of the sticker by 100 (to become a percent).
-
-              if len(jsonToPython['iteminfo']['stickers']) == 2: # If there are 2 stickers the following code is executed.
-                
-                if wearOne == None: # The code below is executed if the sticker wear is null.
-                  wearOne = 0 # Assigns 0 as the wear value of the sticker.
-                else: # If the sticker wear is not null the following code is executed.
-                  wearOne = wearOne*100 # Multiplies the wear of the sticker by 100 (to become a percent).
-
-                if wearTwo == None: # The code below is executed if the sticker wear is null.
-                  wearTwo = 0 # Assigns 0 as the wear value of the sticker.
-                else: # If the sticker wear is not null the following code is executed.
-                  wearTwo = wearTwo*100 # Multiplies the wear of the sticker by 100 (to become a percent).
-
-              if len(jsonToPython['iteminfo']['stickers']) == 1: # If there is one sticker the following code is executed.
-                
-                if wearOne == None: # The code below is executed if the sticker wear is null.
-                  wearOne = 0 # Assigns 0 as the wear value of the sticker.
-                else: # If the sticker wear is not null the following code is executed.
-                  wearOne = wearOne*100 # Multiplies the wear of the sticker by 100 (to become a percent).
-
-              #--- Sticker output in embed.
-              if len(jsonToPython['iteminfo']['stickers']) == 4: # If there are 4 stickers, the following code is executed.
-                #- Stickers available with wear perecents as suffix. 
-                stickerOne = '(' + str(wearOne)[0:2] +'%) ' + jsonToPython['iteminfo']['stickers'][0]['name']
-                stickerTwo = '(' + str(wearTwo)[0:2] +'%) ' + jsonToPython['iteminfo']['stickers'][1]['name']
-                stickerThree = '(' + str(wearThree)[0:2] +'%) ' + jsonToPython['iteminfo']['stickers'][2]['name']
-                stickerFour = '(' + str(wearFour)[0:2] +'%) ' + jsonToPython['iteminfo']['stickers'][3]['name']
-                stickerOutput = '\n \n __**Stickers:**__ ' + '\n' +  stickerOne + '\n' + stickerTwo + '\n' + stickerThree + '\n' + stickerFour # Sticker output to be used in embed.
-
-              if len(jsonToPython['iteminfo']['stickers']) == 3: # If there are 3 stickers, the following code is executed.
-                #- Stickers available with wear perecents as suffix. 
-                stickerOne = '(' + str(wearOne)[0:2] +'%) ' + jsonToPython['iteminfo']['stickers'][0]['name']
-                stickerTwo = '(' + str(wearTwo)[0:2] +'%) ' + jsonToPython['iteminfo']['stickers'][1]['name']
-                stickerThree = '(' + str(wearThree)[0:2] +'%) ' + jsonToPython['iteminfo']['stickers'][2]['name']
-                stickerOutput = '\n \n __**Stickers:**__ ' + '\n' +  stickerOne + '\n' + stickerTwo + '\n' + stickerThree # Sticker output to be used in embed.
-
-              if len(jsonToPython['iteminfo']['stickers']) == 2: # If there are 2 stickers, the following code is executed.
-                #- Stickers available with wear perecents as suffix. 
-                stickerOne = '(' + str(wearOne)[0:2] +'%) ' + jsonToPython['iteminfo']['stickers'][0]['name']
-                stickerTwo = '(' + str(wearTwo)[0:2] +'%) ' + jsonToPython['iteminfo']['stickers'][1]['name']
-                stickerOutput = '\n \n __**Stickers:**__ ' + '\n' +  stickerOne + '\n' + stickerTwo # Sticker output to be used in embed.
-              
-              if len(jsonToPython['iteminfo']['stickers']) == 1: # If there is 1 sticker, the following code is executed.
-                #- Stickers available with wear perecents as suffix. 
-                stickerOne = '(' + str(wearOne)[0:2] +'%) ' + jsonToPython['iteminfo']['stickers'][0]['name']
-                stickerOutput = '\n \n __**Stickers:**__ ' + '\n' +  stickerOne # Sticker output to be used in embed.
-                
-              
+                stickerOutput = stickerName + stickerWear
               
 
 
