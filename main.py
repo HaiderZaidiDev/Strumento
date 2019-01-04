@@ -147,7 +147,7 @@ async def on_message(message): # Defines event response. (Executes on message.)
 
 
             #------- STICKER DETECTION
-            if jsonToPythonp['iteminfo']['stickers'] == None:
+            if jsonToPython['iteminfo']['stickers'] == None:
               stickerOutput = ''
             
             else: 
