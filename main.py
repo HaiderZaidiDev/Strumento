@@ -79,7 +79,7 @@ async def on_message(message): # Defines event response. (Executes on message.)
         inspectUrl = message.content.replace('+screenshot ','') # Removes +screenshot and the following space from the users message, assigns it to a variable.
         screenShot = "https://csgo.gallery/" + inspectUrl # Appends inspect url to csgo.gallery link. 
 
-        screenShotRedir = requests.get(screenShot)
+        screenShotRedir = requests.get(screenShot).url
 
         if screenShotRedir == str('https://cs.deals/screenshot'): # If the final redirect returns back to the cs.deals homepage, meaning the inspect url was incorrect, the following code is executed. 
             emb = discord.Embed(description='An invalid inspect url was provided, please try again.', colour = 0x00b2ff)
