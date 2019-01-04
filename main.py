@@ -26,8 +26,8 @@ async def on_message(message): # Defines event response. (Executes on message.)
         await client.send_message(message.channel, ''' I'm currently being used in''' + str(serverCount) + ' server(s).') # Bot output. 
         
       if message.content.startswith('+ping'): # If the user enters +ping, the following code is executed.
-        await client.send_message(message.channel, 'Pong!')
-      
+        await client.send_message(message.channel,  str(client.ping) + 'ms') 
+        
       if message.content.startswith('+info'): # If the user enters +info, the following code is executed. 
         infoMessage = '''
         __**Information**__:
