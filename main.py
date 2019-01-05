@@ -143,10 +143,20 @@ async def on_message(message): # Defines event response. (Executes on message.)
             marketWear = ' %28' + wear + '%29' # Adds brackets via percent encoding around the wear of the skin.
             wearHash = '(' + wear + ')' # Adds brackets around the wear of the skin.
             suffixWear = '**Wear: **' + wear # Wear output to be displayed in the embed (wear with suffix).
-
-
-
-            #------- STICKER DETECTION
+            
+            #--- Sticker Detection
+            if jsonToPython['iteminfo']['stickers'] == None:
+                stickerOutput = ''
+              
+              for stickers in jsonToPython['iteminfo']['stickers']:
+                stickerName = stickers['name']
+                stickerWear = stickers['wear']
+                
+                if stickerWear == None:
+                  stickerWear = 0
+                  
+                stickerOutput = stickerName + ' ' + str(stickerWear)
+                return stickerOutput
 
             if jsonToPython['iteminfo']['killeaterscoretype'] == None: # If the skin is not stat trak the following code is executed.
               rawMarketSkin = raw_skin + marketWear
@@ -196,20 +206,9 @@ async def on_message(message): # Defines event response. (Executes on message.)
               
 
             if jsonToPython['iteminfo']['killeaterscoretype'] == None:
-              if jsonToPython['iteminfo']['stickers'] == None:
-                stickerOutput = ''
-              
-              for stickers in jsonToPython['iteminfo']['stickers']:
-                stickerName = stickers['name']
-                stickerWear = stickers['wear']
-                
-                if stickerWear == None:
-                  stickerWear = 0
-                  
-                stickerOutput = stickerName + ' ' + str(stickerWear)
-                emb = discord.Embed(description= msgOutput, colour = 0x00b2ff) # Outputs data of the skin fetched from the inspect url. 
-                emb.set_image(url=screenShotRedir) # Sets the embed as an image; screenShotRedir
-                await client.send_message(message.channel, embed=emb) # Prints the embe
+              emb = discord.Embed(description= msgOutput, colour = 0x00b2ff) # Outputs data of the skin fetched from the inspect url. 
+              emb.set_image(url=screenShotRedir) # Sets the embed as an image; screenShotRedir
+              await client.send_message(message.channel, embed=emb) # Prints the embe
             
             else: # If the skin is stat trak, the following code is executed. 
               #--- Final embed output, message printed to end user. 
