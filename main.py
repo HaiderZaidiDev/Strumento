@@ -158,8 +158,8 @@ async def on_message(message): # Defines event response. (Executes on message.)
                   while sCount < i:
                     sCount = sCount + 1
                   
-                  stickerName = [sCount]['name']
-                  stickerWear = [sCount]['wear']
+                  stickerName = stickers[sCount]['name']
+                  stickerWear = stickers[sCount]['wear']
                   
                   if stickerWear == None:
                     stickerWear = 0
