@@ -147,10 +147,6 @@ async def on_message(message): # Defines event response. (Executes on message.)
 
 
             #------- STICKER DETECTION
-            if jsonToPython['iteminfo']['stickers'] == None:
-              stickerOutput = ''
-            
-            else:
 
             if jsonToPython['iteminfo']['killeaterscoretype'] == None: # If the skin is not stat trak the following code is executed.
               rawMarketSkin = raw_skin + marketWear
@@ -199,7 +195,9 @@ async def on_message(message): # Defines event response. (Executes on message.)
               msgOutputStat = '__**Information:**__ \n' + statSkin + '\n' + suffixWear + '\n' + skin_floatValue + '\n' + str(patternIndex) +  '\n' + screenShotRedirOutput + '\n \n __**Listings:**__ \n' + marketLinkOutput + '\n' + bitskinsLinkOutput + '\n' + marketMedianOutput + stickerOutput
               
 
-            if jsonToPython['iteminfo']['killeaterscoretype'] == None: 
+            if jsonToPython['iteminfo']['killeaterscoretype'] == None:
+              if jsonToPython['iteminfo']['stickers'] == None:
+                stickerOutput = ''
               
               for stickers in jsonToPython['iteminfo']['stickers']:
                 stickerName = stickers['name']
