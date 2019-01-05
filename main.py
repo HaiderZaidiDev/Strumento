@@ -157,6 +157,8 @@ async def on_message(message): # Defines event response. (Executes on message.)
                 for stickers in jsonToPython['iteminfo']['stickers']:
                   stickerName = stickers['name']
                   stickerWear = stickers['wear']
+                  print(stickerName)
+                  print(stickerWear)
                   
                   if stickerWear == None:
                     stickerWear = 0
