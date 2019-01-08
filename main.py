@@ -227,3 +227,4 @@ async def on_message(message): # Defines event response. (Executes on message.)
               
 
 client.run(sys.argv[1]) # Running bot with secret token from command line arg. 
+client.close()
