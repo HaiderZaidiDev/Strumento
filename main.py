@@ -155,7 +155,7 @@ async def on_message(message): # Defines event response. (Executes on message.)
                     stickerWear = 0
                   
                   stickerOutput = stickerName + ' ' + str(stickerWear)
-                  sOut += \n + stickerOutput + \n
+                  sOut += '\n' + stickerOutput + '\n'
              
             sOut = ''
                 
