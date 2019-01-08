@@ -90,7 +90,7 @@ async def on_message(message): # Defines event response. (Executes on message.)
           knifeID = [500, 505, 506, 507, 508, 509, 512, 514, 515, 516, 519, 520, 522, 523]
           
           for apiData in urllib.request.urlopen('https://api.csgofloat.com/?url=' + inspectUrl):  
-              jsonToPython = json.loads(apiData.decode('utf-8')) # Loads json from apiData.
+            jsonToPython = json.loads(apiData.decode('utf-8')) # Loads json from apiData.
               
             
 
