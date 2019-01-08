@@ -146,17 +146,19 @@ async def on_message(message): # Defines event response. (Executes on message.)
             
             #--- Sticker Detection
             if jsonToPython['iteminfo']['stickers'] == None:
-                stickerOutput = ''
                 
                 for stickers in jsonToPython['iteminfo']['stickers']:
                   stickerName = stickers['name']
                   stickerWear = stickers['wear']
-                
-                if stickerWear == None:
-                  stickerWear = 0
                   
-                stickerOutput = stickerName + ' ' + str(stickerWear)
-                return stickerOutput
+                  if stickerWear == None:
+                    stickerWear = 0
+                  
+                  stickerOutput = stickerName + ' ' + str(stickerWear)
+                  sOut += \n + stickerOutput + \n
+             
+            sOut = ''
+                
 
             if jsonToPython['iteminfo']['killeaterscoretype'] == None: # If the skin is not stat trak the following code is executed.
               rawMarketSkin = raw_skin + marketWear
@@ -195,9 +197,9 @@ async def on_message(message): # Defines event response. (Executes on message.)
 
             if jsonToPython['iteminfo']['defindex'] in knifeID: # If the skin is a knife, the following code is executed. 
               #--- Adds knife star prefix. 
-              msgOutput = '__**Information:**__ \n' + skin + '\n' + suffixWear + '\n' + skin_floatValue + '\n' + str(patternIndex) + '\n \n __**Listings:**__ \n' + marketLinkOutput + '\n' + bitskinsLinkOutput + '\n' + marketMedianOutput  
+              msgOutput = '__**Information:**__ \n' + skin + '\n' + suffixWear + '\n' + skin_floatValue + '\n' + str(patternIndex) + '\n \n __**Listings:**__ \n' + marketLinkOutput + '\n' + bitskinsLinkOutput + '\n' + marketMedianOutput + sOut
 
-              msgOutputStat = '__**Information:**__ \n' + statSkin + '\n' + suffixWear + '\n' + skin_floatValue + '\n' + str(patternIndex) + '\n' + screenShotRedirOutput + '\n \n __**Listings:**__ \n' + marketLinkOutput + '\n' + bitskinsLinkOutput + '\n' + marketMedianOutput 
+              msgOutputStat = '__**Information:**__ \n' + statSkin + '\n' + suffixWear + '\n' + skin_floatValue + '\n' + str(patternIndex) + '\n' + screenShotRedirOutput + '\n \n __**Listings:**__ \n' + marketLinkOutput + '\n' + bitskinsLinkOutput + '\n' + marketMedianOutput + sOut
             
             else: # If the skin is not a knife, the following code is executed. 
               msgOutput = '__**Information:**__ \n' + skin + '\n' + suffixWear + '\n' + skin_floatValue + '\n' + str(patternIndex) + '\n' + screenShotRedirOutput + '\n \n __**Listings:**__ \n' + marketLinkOutput + '\n' + bitskinsLinkOutput + '\n' + marketMedianOutput + '\n' + stickerOutput 
