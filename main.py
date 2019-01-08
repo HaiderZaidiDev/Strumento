@@ -4,6 +4,7 @@ import os # Imports os module.
 import json # Imports Json Module
 import sys
 import requests
+import time
 
 client = discord.Client() # Creates discord client. 
 
@@ -88,8 +89,10 @@ async def on_message(message): # Defines event response. (Executes on message.)
         else: 
           knifeID = [500, 505, 506, 507, 508, 509, 512, 514, 515, 516, 519, 520, 522, 523]
           
-          for apiData in urllib.request.urlopen('https://api.csgofloat.com/?url=' + inspectUrl): # Opens API for CS:GO Skins. 
-            jsonToPython = json.loads(apiData.decode('utf-8')) # Loads json from apiData.
+            for apiData in urllib.request.urlopen('https://api.csgofloat.com/?url=' + inspectUrl):  
+              jsonToPython = json.loads(apiData.decode('utf-8')) # Loads json from apiData.
+              
+            
 
             weapon_type = jsonToPython['iteminfo']['weapon_type'] # Weapon name.
             skin_name = jsonToPython['iteminfo']['item_name'] # Skin Name.
@@ -145,19 +148,23 @@ async def on_message(message): # Defines event response. (Executes on message.)
             suffixWear = '**Wear: **' + wear # Wear output to be displayed in the embed (wear with suffix).
             
             #--- Sticker Detection
-            if jsonToPython['iteminfo']['stickers'] == None:
+            if jsonToPython['iteminfo']['stickers'] == None: # If the skin has no sticker, the following code is executed.
+              sOut = '' # Empty string for sOut
+              
+            else: # If the skin has stickers the following code is executed.
+              sOut += '__**Stickers**__:'
+              for stickers in jsonToPython['iteminfo']['stickers']: # For loop to access stickers.
+                stickerName = stickers['name'] # Assigns sticker name to stickerName.
+                stickerWear = stickers['wear'] # Assigns sticker wear to stickerWear.
                 
-                for stickers in jsonToPython['iteminfo']['stickers']:
-                  stickerName = stickers['name']
-                  stickerWear = stickers['wear']
-                  
-                  if stickerWear == None:
+                if stickerWear == None: # If the wear of the sticker is null, it's output is 0.
                     stickerWear = 0
                   
-                  stickerOutput = stickerName + ' ' + str(stickerWear)
-                  sOut += '\n' + stickerOutput + '\n'
+                stickerOutput = '(' + str(stickerWear) +'%) + stickerName # 
+                sOut += '\n' + stickerOutput + '\n' # Appends stickerOutput to sOut (used in final embed).
+                
              
-            sOut = ''
+            sOut = '' # Empty string for sOut. 
                 
 
             if jsonToPython['iteminfo']['killeaterscoretype'] == None: # If the skin is not stat trak the following code is executed.
