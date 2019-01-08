@@ -160,7 +160,7 @@ async def on_message(message): # Defines event response. (Executes on message.)
                 if stickerWear == None: # If the wear of the sticker is null, it's output is 0.
                     stickerWear = 0
                   
-                stickerOutput = '(' + str(stickerWear) +'%) + stickerName # 
+                stickerOutput = '(' + str(stickerWear) +'%)' + stickerName 
                 sOut += '\n' + stickerOutput + '\n' # Appends stickerOutput to sOut (used in final embed).
                 
              
