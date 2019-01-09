@@ -162,9 +162,9 @@ async def on_message(message): # Defines event response. (Executes on message.)
                     stickerWear = 0
                   
                 stickerOutput = '(' + str(stickerWear) +'%)' + stickerName 
-                print(stickerName)
+                #print(stickerName)
                 sOut += stickerOutput + '\n' # Appends stickerOutput to sOut (used in final embed).
-                print('----------- \n') + sOut 
+                print(sOut)
    
 
             if jsonToPython['iteminfo']['killeaterscoretype'] == None: # If the skin is not stat trak the following code is executed.
