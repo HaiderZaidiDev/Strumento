@@ -156,12 +156,12 @@ async def on_message(message): # Defines event response. (Executes on message.)
               sOut += '__**Stickers**__:'
               for stickers in jsonToPython['iteminfo']['stickers']: # For loop to access stickers.
                 stickerName = stickers['name'] # Assigns sticker name to stickerName.
-                stickerWear = stickers['wear'] # Assigns sticker wear to stickerWear.
+                stickerWear = float(stickers['wear'])*100 # Assigns sticker wear to stickerWear.
                 
                 if stickerWear == None: # If the wear of the sticker is null, it's output is 0.
                     stickerWear = 0
                   
-                stickerOutput = '(' + str(stickerWear) +'%)' + stickerName 
+                stickerOutput = '(' + str(stickerWear[0:3]) +'%)' + stickerName 
                 sOut += '\n' + stickerOutput + '\n' # Appends stickerOutput to sOut (used in final embed).
                 
              
