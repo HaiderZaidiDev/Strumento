@@ -154,7 +154,6 @@ async def on_message(message): # Defines event response. (Executes on message.)
               sOut = '' # Empty string for sOut
               
             else: # If the skin has stickers the following code is executed.
-              sOut += '__**Stickers**__:'
               for stickers in jsonToPython['iteminfo']['stickers']: # For loop to access stickers.
                 stickerName = stickers['name'] # Assigns sticker name to stickerName.
                 stickerWear = stickers['wear'] # Assigns sticker wear to stickerWear.
@@ -165,6 +164,7 @@ async def on_message(message): # Defines event response. (Executes on message.)
                 stickerOutput = '(' + str(stickerWear) +'%)' + stickerName 
                 print(stickerName)
                 sOut += stickerOutput + '\n' # Appends stickerOutput to sOut (used in final embed).
+                print('----------- \n') + sOut 
    
 
             if jsonToPython['iteminfo']['killeaterscoretype'] == None: # If the skin is not stat trak the following code is executed.
