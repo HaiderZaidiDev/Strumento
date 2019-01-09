@@ -161,10 +161,10 @@ async def on_message(message): # Defines event response. (Executes on message.)
                 
                 if stickers['wear'] == None: 
                   stickerWear = 0
-                  stickerOutput = '(' + str(stickerWear) +'%)' + stickerName 
+                  stickerOutput = '(' + str(stickerWear) +'%) ' + stickerName 
                   
                 else:
-                  stickerOutput = '(' + stickerWear[2:3] +'%)' + stickerName 
+                  stickerOutput = '(' + stickerWear[2:3] +'%) ' + stickerName 
                 
                 sOut += stickerOutput + '\n' # Appends stickerOutput to sOut (used in final embed).
    
