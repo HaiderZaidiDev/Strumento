@@ -148,6 +148,7 @@ async def on_message(message): # Defines event response. (Executes on message.)
             suffixWear = '**Wear: **' + wear # Wear output to be displayed in the embed (wear with suffix).
             
             #--- Sticker Detection
+            sOut = '' # Empty string for sOut. 
             if jsonToPython['iteminfo']['stickers'] == None: # If the skin has no sticker, the following code is executed.
               sOut = '' # Empty string for sOut
               
@@ -164,7 +165,7 @@ async def on_message(message): # Defines event response. (Executes on message.)
                 sOut += '\n' + stickerOutput + '\n' # Appends stickerOutput to sOut (used in final embed).
                 
              
-            sOut = '' # Empty string for sOut. 
+            
 
 
             if jsonToPython['iteminfo']['killeaterscoretype'] == None: # If the skin is not stat trak the following code is executed.
