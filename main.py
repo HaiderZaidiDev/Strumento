@@ -154,15 +154,15 @@ async def on_message(message): # Defines event response. (Executes on message.)
               sOut = '' # Empty string for sOut
               
             else: # If the skin has stickers the following code is executed.
-              sOut = '\n __**Stickers**__ \n'
+              sOut = '\n __**Stickers:**__ \n'
               for stickers in jsonToPython['iteminfo']['stickers']: # For loop to access stickers.
                 stickerName = stickers['name'] # Assigns sticker name to stickerName.
-                stickerWear = stickers['wear'] # Assigns sticker wear to stickerWear.
+                stickerWear = str(stickers['wear']) # Assigns sticker wear to stickerWear.
                 
                 if stickerWear == None: # If the wear of the sticker is null, it's output is 0.
                     stickerWear = 0
                   
-                stickerOutput = '(' + str(stickerWear) +'%)' + stickerName 
+                stickerOutput = '(' + stickerWear[2:3] +'%)' + stickerName 
                 sOut += stickerOutput + '\n' # Appends stickerOutput to sOut (used in final embed).
    
 
