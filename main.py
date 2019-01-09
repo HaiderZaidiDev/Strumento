@@ -149,6 +149,7 @@ async def on_message(message): # Defines event response. (Executes on message.)
             
             #--- Sticker Detection
             sOut = '' # Empty string for sOut. 
+            
             if jsonToPython['iteminfo']['stickers'] == None: # If the skin has no sticker, the following code is executed.
               sOut = '' # Empty string for sOut
               
@@ -161,11 +162,8 @@ async def on_message(message): # Defines event response. (Executes on message.)
                 if stickerWear == None: # If the wear of the sticker is null, it's output is 0.
                     stickerWear = 0
                   
-                stickerOutput = '(' + str(stickerWear[2:3]) +'%)' + stickerName 
-   
-  
-  
-            sOut += '\n' + stickerOutput + '\n' # Appends stickerOutput to sOut (used in final embed).
+                stickerOutput = '(' + str(stickerWear) +'%)' + stickerName 
+                sOut += stickerOutput + '\n' # Appends stickerOutput to sOut (used in final embed).
    
 
             if jsonToPython['iteminfo']['killeaterscoretype'] == None: # If the skin is not stat trak the following code is executed.
