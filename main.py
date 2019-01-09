@@ -165,6 +165,7 @@ async def on_message(message): # Defines event response. (Executes on message.)
                 
              
             sOut = '' # Empty string for sOut. 
+            return sOut
                 
 
             if jsonToPython['iteminfo']['killeaterscoretype'] == None: # If the skin is not stat trak the following code is executed.
