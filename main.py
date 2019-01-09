@@ -154,6 +154,7 @@ async def on_message(message): # Defines event response. (Executes on message.)
               sOut = '' # Empty string for sOut
               
             else: # If the skin has stickers the following code is executed.
+              sOut = '\n __**Stickers**__ \n'
               for stickers in jsonToPython['iteminfo']['stickers']: # For loop to access stickers.
                 stickerName = stickers['name'] # Assigns sticker name to stickerName.
                 stickerWear = stickers['wear'] # Assigns sticker wear to stickerWear.
@@ -162,9 +163,7 @@ async def on_message(message): # Defines event response. (Executes on message.)
                     stickerWear = 0
                   
                 stickerOutput = '(' + str(stickerWear) +'%)' + stickerName 
-                #print(stickerName)
                 sOut += stickerOutput + '\n' # Appends stickerOutput to sOut (used in final embed).
-                print(sOut)
    
 
             if jsonToPython['iteminfo']['killeaterscoretype'] == None: # If the skin is not stat trak the following code is executed.
@@ -209,9 +208,9 @@ async def on_message(message): # Defines event response. (Executes on message.)
               msgOutputStat = '__**Information:**__ \n' + statSkin + '\n' + suffixWear + '\n' + skin_floatValue + '\n' + str(patternIndex) + '\n' + screenShotRedirOutput + '\n \n __**Listings:**__ \n' + marketLinkOutput + '\n' + bitskinsLinkOutput + '\n' + marketMedianOutput + sOut
             
             else: # If the skin is not a knife, the following code is executed. 
-              msgOutput = '__**Information:**__ \n' + skin + '\n' + suffixWear + '\n' + skin_floatValue + '\n' + str(patternIndex) + '\n' + screenShotRedirOutput + '\n \n __**Listings:**__ \n' + marketLinkOutput + '\n' + bitskinsLinkOutput + '\n' + marketMedianOutput + '\n' + stickerOutput 
+              msgOutput = '__**Information:**__ \n' + skin + '\n' + suffixWear + '\n' + skin_floatValue + '\n' + str(patternIndex) + '\n' + screenShotRedirOutput + '\n \n __**Listings:**__ \n' + marketLinkOutput + '\n' + bitskinsLinkOutput + '\n' + marketMedianOutput + '\n' + sOut
 
-              msgOutputStat = '__**Information:**__ \n' + statSkin + '\n' + suffixWear + '\n' + skin_floatValue + '\n' + str(patternIndex) +  '\n' + screenShotRedirOutput + '\n \n __**Listings:**__ \n' + marketLinkOutput + '\n' + bitskinsLinkOutput + '\n' + marketMedianOutput + stickerOutput
+              msgOutputStat = '__**Information:**__ \n' + statSkin + '\n' + suffixWear + '\n' + skin_floatValue + '\n' + str(patternIndex) +  '\n' + screenShotRedirOutput + '\n \n __**Listings:**__ \n' + marketLinkOutput + '\n' + bitskinsLinkOutput + '\n' + marketMedianOutput + sOut
               
 
             if jsonToPython['iteminfo']['killeaterscoretype'] == None:
