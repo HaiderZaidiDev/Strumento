@@ -161,7 +161,7 @@ async def on_message(message): # Defines event response. (Executes on message.)
                 
                 if stickers['wear'] == None: 
                   stickerWear = 0
-                  stickerOutput = '(' + stickerWear +'%)' + stickerName 
+                  stickerOutput = '(' + str(stickerWear) +'%)' + stickerName 
                   
                 else:
                   stickerOutput = '(' + stickerWear[2:3] +'%)' + stickerName 
