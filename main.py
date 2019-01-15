@@ -124,7 +124,7 @@ async def on_message(message): # Defines event response. (Executes on message.)
               statSkin = '**Skin: **★ StatTrak™ ' + weapon_type + ' | ' + skin_name # Weapon + Skin Name
               statSkin_raw = '%E2%98%85 StatTrak%E2%84%A2 ' + weapon_type + ' %7C ' + skin_name # Stat trak skin string with percent encoding
               
-              if str('Doppler') in jsonToPython['iteminfo']['itemname']:
+              if str('Doppler') in jsonToPython['iteminfo']['item_name']:
                 skin+= ' (' + dopplerType[paint_index] + ')'
 
             if len(jsonToPython['iteminfo']['stickers']) > 0: # If the skin has a sticker, the following code is executed.
