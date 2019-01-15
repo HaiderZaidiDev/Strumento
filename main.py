@@ -112,6 +112,7 @@ async def on_message(message): # Defines event response. (Executes on message.)
 
             weapon_type = jsonToPython['iteminfo']['weapon_type'] # Weapon name.
             skin_name = jsonToPython['iteminfo']['item_name'] # Skin Name.
+            paint_index = jsonToPython['iteminfo']['paintindex']
 
             skin = '**Skin: **' + weapon_type + ' | ' + skin_name # Weapon + Skin Name
             raw_skin = weapon_type + ' %7C ' + skin_name # Skin string with percent encoding. 
