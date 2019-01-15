@@ -251,8 +251,7 @@ async def on_message(message): # Defines event response. (Executes on message.)
                 await client.send_message(message.channel, embed=emb) # Prints the embed.
 
           except:
-            emb = discord.Embed(description='There was an error fetching data from the CSGOFloat API, please ensure you entered a valid inpsect url.', color = 0x00b2ff)
-            await client.send_message(message.channel, embed=emb)
+            await client.send_message(message.channel, 'woops')
             
               
 
