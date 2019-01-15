@@ -89,6 +89,22 @@ async def on_message(message): # Defines event response. (Executes on message.)
         else: 
           knifeID = [500, 505, 506, 507, 508, 509, 512, 514, 515, 516, 519, 520, 522, 523]
           
+          dopplerType = {
+            415:'Ruby',
+            416:'Sapphire',
+            417:'Black Pearl',
+            418:'Phase 1',
+            419:'Phase 2',
+            420:'Phase 3',
+            421:'Phase 4',
+            568:'Emerald',
+            569:'Phase 1',
+            570:'Phase 2',
+            571:'Phase 3',
+            572:'Phase 4',
+            619:'Sapphire'
+          }
+          
           for apiData in urllib.request.urlopen('https://api.csgofloat.com/?url=' + inspectUrl):  
             jsonToPython = json.loads(apiData.decode('utf-8')) # Loads json from apiData.
               
@@ -107,7 +123,9 @@ async def on_message(message): # Defines event response. (Executes on message.)
               raw_skin = '%E2%98%85 ' + weapon_type + ' %7C ' + skin_name # Skin string with percent encoding. 
               statSkin = '**Skin: **★ StatTrak™ ' + weapon_type + ' | ' + skin_name # Weapon + Skin Name
               statSkin_raw = '%E2%98%85 StatTrak%E2%84%A2 ' + weapon_type + ' %7C ' + skin_name # Stat trak skin string with percent encoding
-
+              
+              if str('Doppler') in jsonToPython['iteminfo']['itemname']:
+                skin+= ' (' + dopplerType[paint_index] + ')'
 
             if len(jsonToPython['iteminfo']['stickers']) > 0: # If the skin has a sticker, the following code is executed.
               #--- Souvenier Detection
