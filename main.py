@@ -223,7 +223,7 @@ async def on_message(message): # Defines event response. (Executes on message.)
             
             screenShotRedirOutput = '**Screenshot: ** [[Link]]' + '(' + screenShotRedir + ')'
             
-              for apiData in urllib.request.urlopen('https://api.csgofloat.com/?url=' + inspectUrl): # Re-opens CSGOFloat api. 
+            for apiData in urllib.request.urlopen('https://api.csgofloat.com/?url=' + inspectUrl): # Re-opens CSGOFloat api. 
                 jsonToPython = json.loads(apiData.decode('utf-8')) # Loads data from API, decodes to utf-8. 
 
               if jsonToPython['iteminfo']['defindex'] in knifeID: # If the skin is a knife, the following code is executed. 
