@@ -132,12 +132,14 @@ async def on_message(message): # Defines event response. (Executes on message.)
                 
 
                 if len(jsonToPython['iteminfo']['stickers']) > 0: # If the skin has a sticker, the following code is executed.
+                  
               #--- Souvenier Detection
               #- NOTE: This may give false positives/not always work accurately, i.e if a gold sticker was put on a unboxed skin, or stickers were removed from a souvenier skin this would not detect that. 
               #        Always look at the screenshot to determine if the skin is souvenier or not for 100% accuracy. 
-                if jsonToPython['iteminfo']['origin'] == 8 and str('gold') in jsonToPython['iteminfo']['stickers'][0]['codename']: # If the skin was unboxed, and has a sticker with the word gold in it the following code is executed.
-                  skin = '**Skin: ** Souvenir ' + weapon_type + ' | ' + skin_name # Adds souvenier suffix to skin.
-                  raw_skin = 'Souvenir ' + weapon_type + ' %7C ' + skin_name # Adds souvenier suffix to skin name with percent encoding.
+                  
+                  if jsonToPython['iteminfo']['origin'] == 8 and str('gold') in jsonToPython['iteminfo']['stickers'][0]['codename']: # If the skin was unboxed, and has a sticker with the word gold in it the following code is executed.
+                    skin = '**Skin: ** Souvenir ' + weapon_type + ' | ' + skin_name # Adds souvenier suffix to skin.
+                    raw_skin = 'Souvenir ' + weapon_type + ' %7C ' + skin_name # Adds souvenier suffix to skin name with percent encoding.
              
           except: 
             emb = discord.Client(description="There was an error accessing the CSGOFloat API, please ensure your inspect url is correct.")
