@@ -222,9 +222,9 @@ async def on_message(message): # Defines event response. (Executes on message.)
             bitskinsLinkOutput = '**Bitskins: **[[Link]]' + '(' + bitskinsLink + ')' # bitSKins link as hyperlink, to be used in embed.
             
             screenShotRedirOutput = '**Screenshot: ** [[Link]]' + '(' + screenShotRedir + ')'
-            
+
             for apiData in urllib.request.urlopen('https://api.csgofloat.com/?url=' + inspectUrl): # Re-opens CSGOFloat api. 
-                jsonToPython = json.loads(apiData.decode('utf-8')) # Loads data from API, decodes to utf-8. 
+              jsonToPython = json.loads(apiData.decode('utf-8')) # Loads data from API, decodes to utf-8. 
 
               if jsonToPython['iteminfo']['defindex'] in knifeID: # If the skin is a knife, the following code is executed. 
                 #--- Adds knife star prefix. 
