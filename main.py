@@ -195,7 +195,7 @@ async def on_message(message): # Defines event response. (Executes on message.)
    
 
                 if jsonToPython['iteminfo']['killeaterscoretype'] == None: # If the skin is not stat trak the following code is executed.
-                rawMarketSkin = raw_skin + marketWear
+                  rawMarketSkin = raw_skin + marketWear
             
                 else: # If the skin is stat trak, the following code is executed. 
                   rawMarketSkin = statSkin_raw + marketWear
