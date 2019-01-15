@@ -83,7 +83,7 @@ async def on_message(message): # Defines event response. (Executes on message.)
         screenShotRedir = requests.get(screenShot).url
         screenShotRedirContent = requests.get(screenShot).url
 
-        if screenShotRedir == str('https://cs.deals/screenshot') or screenShotRedirContent == str('Invalid link.'): 
+        if screenShotRedir == str('https://cs.deals/screenshot') or screenShotRedirContent == str('Invalid link'): 
           emb = discord.Embed(description='An invalid inspect url was provided, please try again.', colour = 0x00b2ff)
           await client.send_message(message.channel, embed = emb) # Prints message to user stating inspect url was invalid. 
 
@@ -108,7 +108,6 @@ async def on_message(message): # Defines event response. (Executes on message.)
           
           for apiData in urllib.request.urlopen('https://api.csgofloat.com/?url=' + inspectUrl):  
             jsonToPython = json.loads(apiData.decode('utf-8')) # Loads json from apiData.
-            print('yeet')
 
             weapon_type = jsonToPython['iteminfo']['weapon_type'] # Weapon name.
             skin_name = jsonToPython['iteminfo']['item_name'] # Skin Name.
