@@ -127,6 +127,7 @@ async def on_message(message): # Defines event response. (Executes on message.)
               
               if str('Doppler') in jsonToPython['iteminfo']['item_name']:
                 skin+= ' (' + dopplerType[paint_index] + ')'
+                print('test')
 
             if len(jsonToPython['iteminfo']['stickers']) > 0: # If the skin has a sticker, the following code is executed.
               #--- Souvenier Detection
