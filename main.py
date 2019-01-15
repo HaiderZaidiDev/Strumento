@@ -175,7 +175,7 @@ async def on_message(message): # Defines event response. (Executes on message.)
             #--- Sticker Detection
             sOut = '' # Empty string for sOut. 
             
-            if jsonToPython['iteminfo']['stickers'] == None or jsonToPython['iteminfo']['stickers'].isspace(): # If the skin has no sticker, the following code is executed.
+            if jsonToPython['iteminfo']['stickers'] == None or jsonToPython['iteminfo']['stickers'][0].isspace(): # If the skin has no sticker, the following code is executed.
               sOut = '' # Empty string for sOut
               
             else: # If the skin has stickers the following code is executed.
