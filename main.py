@@ -105,41 +105,44 @@ async def on_message(message): # Defines event response. (Executes on message.)
             619:'Sapphire'
           }
           
-          for apiData in urllib.request.urlopen('https://api.csgofloat.com/?url=' + inspectUrl):  
-            jsonToPython = json.loads(apiData.decode('utf-8')) # Loads json from apiData.
+          try:
+            for apiData in urllib.request.urlopen('https://api.csgofloat.com/?url=' + inspectUrl):  
+              jsonToPython = json.loads(apiData.decode('utf-8')) # Loads json from apiData.
+
+              weapon_type = jsonToPython['iteminfo']['weapon_type'] # Weapon name.
+              skin_name = jsonToPython['iteminfo']['item_name'] # Skin Name.
+              paint_index = jsonToPython['iteminfo']['paintindex']
+
+              skin = '**Skin: **' + weapon_type + ' | ' + skin_name # Weapon + Skin Name
+              raw_skin = weapon_type + ' %7C ' + skin_name # Skin string with percent encoding. 
+              statSkin = '**Skin: **StatTrak™ ' + weapon_type + ' | ' + skin_name # Weapon + Skin Name
+              statSkin_raw = 'StatTrak%E2%84%A2 ' + weapon_type + ' %7C ' + skin_name # Stat trak skin string with percent encoding. 
+
+              if jsonToPython['iteminfo']['defindex'] in knifeID: # If the skin is a knife, the followeing code is executed.
+                skin = '**Skin: **★ ' + weapon_type + ' | ' + skin_name # Weapon + Skin Name
+                raw_skin = '%E2%98%85 ' + weapon_type + ' %7C ' + skin_name # Skin string with percent encoding. 
+                statSkin = '**Skin: **★ StatTrak™ ' + weapon_type + ' | ' + skin_name # Weapon + Skin Name
+                statSkin_raw = '%E2%98%85 StatTrak%E2%84%A2 ' + weapon_type + ' %7C ' + skin_name # Stat trak skin string with percent encoding
               
-            
-
-            weapon_type = jsonToPython['iteminfo']['weapon_type'] # Weapon name.
-            skin_name = jsonToPython['iteminfo']['item_name'] # Skin Name.
-            paint_index = jsonToPython['iteminfo']['paintindex']
-
-            skin = '**Skin: **' + weapon_type + ' | ' + skin_name # Weapon + Skin Name
-            raw_skin = weapon_type + ' %7C ' + skin_name # Skin string with percent encoding. 
-            statSkin = '**Skin: **StatTrak™ ' + weapon_type + ' | ' + skin_name # Weapon + Skin Name
-            statSkin_raw = 'StatTrak%E2%84%A2 ' + weapon_type + ' %7C ' + skin_name # Stat trak skin string with percent encoding. 
-
-            if jsonToPython['iteminfo']['defindex'] in knifeID: # If the skin is a knife, the followeing code is executed.
-              skin = '**Skin: **★ ' + weapon_type + ' | ' + skin_name # Weapon + Skin Name
-              raw_skin = '%E2%98%85 ' + weapon_type + ' %7C ' + skin_name # Skin string with percent encoding. 
-              statSkin = '**Skin: **★ StatTrak™ ' + weapon_type + ' | ' + skin_name # Weapon + Skin Name
-              statSkin_raw = '%E2%98%85 StatTrak%E2%84%A2 ' + weapon_type + ' %7C ' + skin_name # Stat trak skin string with percent encoding
-              
-              if str('Doppler') in jsonToPython['iteminfo']['item_name']:
-                skin+= ' (' + dopplerType[paint_index] + ')'
+                if str('Doppler') in jsonToPython['iteminfo']['item_name']:
+                  skin+= ' (' + dopplerType[paint_index] + ')'
                 
-                if jsonToPython['iteminfo']['killeaterscoretype'] == 0:
-                  statSkin+= ' (' + dopplerType[paint_index] + ')'
+                  if jsonToPython['iteminfo']['killeaterscoretype'] == 0:
+                    statSkin+= ' (' + dopplerType[paint_index] + ')'
                 
 
-            if len(jsonToPython['iteminfo']['stickers']) > 0: # If the skin has a sticker, the following code is executed.
+                if len(jsonToPython['iteminfo']['stickers']) > 0: # If the skin has a sticker, the following code is executed.
               #--- Souvenier Detection
               #- NOTE: This may give false positives/not always work accurately, i.e if a gold sticker was put on a unboxed skin, or stickers were removed from a souvenier skin this would not detect that. 
               #        Always look at the screenshot to determine if the skin is souvenier or not for 100% accuracy. 
-              if jsonToPython['iteminfo']['origin'] == 8 and str('gold') in jsonToPython['iteminfo']['stickers'][0]['codename']: # If the skin was unboxed, and has a sticker with the word gold in it the following code is executed.
-                skin = '**Skin: ** Souvenir ' + weapon_type + ' | ' + skin_name # Adds souvenier suffix to skin.
-                raw_skin = 'Souvenir ' + weapon_type + ' %7C ' + skin_name # Adds souvenier suffix to skin name with percent encoding.
-            
+                if jsonToPython['iteminfo']['origin'] == 8 and str('gold') in jsonToPython['iteminfo']['stickers'][0]['codename']: # If the skin was unboxed, and has a sticker with the word gold in it the following code is executed.
+                  skin = '**Skin: ** Souvenir ' + weapon_type + ' | ' + skin_name # Adds souvenier suffix to skin.
+                  raw_skin = 'Souvenir ' + weapon_type + ' %7C ' + skin_name # Adds souvenier suffix to skin name with percent encoding.
+             
+          except: 
+            emb = discord.Client(description="There was an error accessing the CSGOFloat API, please ensure your inspect url is correct.")
+            await client.send_message(message.channel, embed=emb)
+              
             
             StrFloatValue = str(jsonToPython['iteminfo']['floatvalue']) # Float value as string. 
             skin_floatValue = '**Float: **'  + StrFloatValue[0:11] # Float value with suffix, used in embed. 
