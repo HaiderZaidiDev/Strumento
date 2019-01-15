@@ -149,7 +149,7 @@ async def on_message(message): # Defines event response. (Executes on message.)
             #--- Wear detection
             #- Determines wear of the skin based upon the float value. 
 
-            raw_floatValue = jsonToPython['iteminfo']['floatvalue'] # Float value as float. 
+              raw_floatValue = jsonToPython['iteminfo']['floatvalue'] # Float value as float. 
 
               if raw_floatValue < 0.07: # If the flow is below 0.07 the follopw
                 wear = 'Factory New'
@@ -194,17 +194,15 @@ async def on_message(message): # Defines event response. (Executes on message.)
                   sOut += stickerOutput + '\n' # Appends stickerOutput to sOut (used in final embed).
    
 
-              if jsonToPython['iteminfo']['killeaterscoretype'] == None: # If the skin is not stat trak the following code is executed.
+                if jsonToPython['iteminfo']['killeaterscoretype'] == None: # If the skin is not stat trak the following code is executed.
                 rawMarketSkin = raw_skin + marketWear
             
-              else: # If the skin is stat trak, the following code is executed. 
-                rawMarketSkin = statSkin_raw + marketWear
+                else: # If the skin is stat trak, the following code is executed. 
+                  rawMarketSkin = statSkin_raw + marketWear
 
-              marketSkinOutput = rawMarketSkin.replace(' ', '+') # Replaces all spaces in the name of the skin with +'s, used for urls. 
+                marketSkinOutput = rawMarketSkin.replace(' ', '+') # Replaces all spaces in the name of the skin with +'s, used for urls. 
             
-              patternIndex = '**Index: **' + str(jsonToPython['iteminfo']['paintseed']) # Pattern index with suffix. # Pattern index with suffix, for use in embed. 
-            
-            
+                patternIndex = '**Index: **' + str(jsonToPython['iteminfo']['paintseed']) # Pattern index with suffix. # Pattern index with suffix, for use in embed. 
 
               for priceAPIData in urllib.request.urlopen('https://steamcommunity.com/market/priceoverview/?appid=730&currency=1&market_hash_name=' + marketSkinOutput): # Accesses steam API for skin prices. 
                 jsonToPython = json.loads(priceAPIData.decode('utf-8')) # Loads steam api as json, decodes as utf-8. 
