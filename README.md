@@ -8,6 +8,7 @@ Strumento has the following features:
 * Fetch links to listings of your skin on the Steam Community Market and Bitskins.
 * Fetches the median price of your skin from the Steam Community Market
 * Display the stickers applied on your skin, along with their respect wear percentages.
+* Provide various information in relation to the pattern/type of skin i.e Doppler phases. 
 
 ## Usage
 Using Strumento is very straight forward, simply type +info following by your inspect url of your skin and the bot will fetch the respective data and output in the channel the command was executed in. 
