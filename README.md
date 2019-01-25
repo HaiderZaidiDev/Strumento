@@ -18,3 +18,8 @@ Input Example:
 `+screenshot steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561198336720751A152`
 
 
+## Development
+Strumento is actively being developed, day by day and is currently in the Beta testing phase. Once released, Strumento will be available for anyone to use via an Discord invite link.
+
+I would like to kindly ask that if you host the bot yourself or make edits to it, please give credit where credit is due. 
+
