@@ -13,7 +13,9 @@ Strumento has the following features:
 Using Strumento is very straight forward, simply type +info following by your inspect url of your skin and the bot will fetch the respective data and output in the channel the command was executed in. 
 
 Input Example:
+
 `+screenshot steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561198336720751A15290022126D5505690681931963140`
 
 Output Example:
+
 ![OutputEx](https://i.imgur.com/IqH9WLx.jpg)
