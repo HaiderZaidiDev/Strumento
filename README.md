@@ -14,6 +14,6 @@ Using Strumento is very straight forward, simply type +info following by your in
 
 Input Example:
 
-`+screenshot steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561198336720751A15290022126D5505690681931963140`
+`+screenshot steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561198336720751A152`
 
 
