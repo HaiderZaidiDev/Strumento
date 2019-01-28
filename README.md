@@ -19,7 +19,7 @@ Input Example:
 
 
 ## Development
-Strumento is actively being developed, day by day and is currently in the Beta testing phase. Once released, Strumento will be available for anyone to use via an Discord invite link.
+Strumento is actively being developed, and is currently in the Beta testing phase. Once released, Strumento will be available for anyone to use via an Discord invite link.
 
-I would like to kindly ask that if you host the bot yourself or make edits to it, please give credit where credit is due. 
+I would like to kindly ask that if you host the bot yourself or make edits to it, please give credit where credit is due.
 
