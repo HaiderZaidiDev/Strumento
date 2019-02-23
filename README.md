@@ -18,8 +18,8 @@ Input Example:
 `+screenshot steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20S76561198336720751A152`
 
 
-## Development
-Strumento is actively being developed, and is currently in the Beta testing phase. Once released, Strumento will be available for anyone to use via an Discord invite link.
+## Development Status
+Strumento is no longer being developed, the bot was originally inspired by 'Apollo'. Apollo is a Discord bot that has similar features to Strumento; however, at the time of creation Apollo was more so a screen-shot tool rather then a trading tool. In the last few months Artemis, the creator of Apollo has made an abundance of updates including making the bot more tradient-oriented rather then just a screenshot tool. Therefore, development of Strumento is at a pause since there is no need for it anymore. I highly suggest checking out Apollo in action on the [r/GlobalOffensiveTrade](https://gotradediscord.xyz/) discord server. 
 
-I would like to kindly ask that if you host the bot yourself or make edits to it, please give credit where credit is due.
+
 
