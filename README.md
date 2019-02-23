@@ -21,5 +21,7 @@ Input Example:
 ## Development Status
 Strumento is no longer being developed, the bot was originally inspired by 'Apollo'. Apollo is a Discord bot that has similar features to Strumento; however, at the time of creation Apollo was more so a screen-shot tool rather then a trading tool. In the last few months Artemis, the creator of Apollo has made an abundance of updates including making the bot more trading-oriented rather then just a screenshot tool. Therefore, development of Strumento is at a pause since there is no need for it anymore. I highly suggest checking out Apollo in action on the [r/GlobalOffensiveTrade](https://gotradediscord.xyz/) discord server. 
 
+I also made this bot when I was still realitvely new to the idea of making Discord bots so the code isn't very efficent, if in the future there becomes a need for this bot, I'll be sure to update it to follow professional formating. 
+
 
 
