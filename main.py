@@ -111,7 +111,6 @@ async def on_message(message): # Defines event response. (Executes on message.)
           try:
             for apiData in urllib.request.urlopen('https://api.csgofloat.com/?url=' + inspectUrl):  
               jsonToPython = json.loads(apiData.decode('utf-8')) # Loads json from apiData.
-              print('yes')
 
               weapon_type = jsonToPython['iteminfo']['weapon_type'] # Weapon name.
               skin_name = jsonToPython['iteminfo']['item_name'] # Skin Name.
@@ -253,9 +252,6 @@ async def on_message(message): # Defines event response. (Executes on message.)
                   emb = discord.Embed(description= msgOutputStat , colour = 0x00b2ff) # Outputs data of the skin fetched from the inspect url. 
                   emb.set_image(url=screenShotRedir) # Sets the embed as an image; screenShotRedir
                   await client.send_message(message.channel, embed=emb) # Prints the embed.
-
-          except:
-            print('nope')
 
             
               
